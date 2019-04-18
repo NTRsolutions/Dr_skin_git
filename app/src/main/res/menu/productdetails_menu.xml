@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="example.javatpoint.com.optionmenu.MainActivity">
+
+    <item
+        android:id="@+id/wish"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="wish"
+        app:showAsAction="always"
+        tools:ignore="AppCompatResource"
+        android:visible="true"/>
+    <item
+        android:id="@+id/cartt"
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        android:title="cart"
+        app:showAsAction="always"
+        />
+
+</menu>

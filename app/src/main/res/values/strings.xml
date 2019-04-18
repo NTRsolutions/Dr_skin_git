@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Drskin</string>
+    <string name="title_activity_bottom_navigation">Bottom_navigation</string>
+    <string name="title_home">HOME</string>
+    <string name="cartt">CART</string>
+    <string name="chat">CHAT</string>
+    <string name="wishlist">WISHLIST</string>
+    <string name="me">ME</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="signin"> SIGN IN </string>
+    <string name="signup"> CREATE AN ACCOUNT </string>
+    <string name="signuptogglr"> Lets email join us for exclusive arrivals and promotions.Opt out any time by clicking unsubscribe at bottom of our emails. </string>
+    <string name="cart"> MY CART </string>
+    <string name="checkout"> CHECKOUT </string>
+    <string name="contactus"> CONTACT US </string>
+    <string name="addtocart"> ADD TO CART </string>
+    <string name="save"> SAVE </string>
+    <string name="buynow"> BUY NOW </string>
+    <string name="ordernow"> ORDER NOW </string>
+
+    <string name="shipping">SHIPPING</string>
+    <string name="payment">PAYMENT</string>
+    <string name="confirmation">CONFIRMATION</string>
+    <string name="edit"> EDIT </string>
+    <string name="addnewAddress"> ADD NEW ADDRESS </string>
+    <string name="shippingto">SHIPPING TO</string>
+    <string name="yourorder">YOUR ORDER</string>
+    <string name="totalamount">TOTAL AMMOUNT</string>
+    <string name="CONFIRMANDPAY"><![CDATA[CONFIRM & PAY]]></string>
+    <string name="termscondtion"><![CDATA[TERMS & CONDITIONS]]></string>
+    <string name="about_text">
+        <![CDATA["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis."
+            <br/>
+            <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+            <br/>
+            <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
+]]>
+    </string>
+
+
+</resources>

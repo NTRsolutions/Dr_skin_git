@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "219355230028",
+    "firebase_url": "https://drskin-cd516.firebaseio.com",
+    "project_id": "drskin-cd516",
+    "storage_bucket": "drskin-cd516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219355230028:android:a42bd0a9602eb823",
+        "android_client_info": {
+          "package_name": "com.sismatix.drskin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219355230028-pnt1j1sd0e1u2lobnoi947q5bfh0sk4d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sismatix.drskin",
+            "certificate_hash": "2ba6310a1c6013dfe1c0285808023c810e7a9fa6"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0hrKa69OYhZo049x__3C6vMncMZA1yTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219355230028-3qst573iga6ho9dd2n0nrnvvicdrgad9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
