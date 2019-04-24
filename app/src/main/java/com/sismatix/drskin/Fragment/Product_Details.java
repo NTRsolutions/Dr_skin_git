@@ -355,12 +355,19 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
             i.setData(Uri.parse("tel:" + 923145689));
             getActivity().startActivity(i);
         } else if (view == lv_email) {
+            Intent it = new Intent(Intent.ACTION_SEND);
+            it.putExtra(Intent.EXTRA_EMAIL, new String[]{"sales@doctorskin.net"});
+            it.putExtra(Intent.EXTRA_SUBJECT,"");
+            it.putExtra(Intent.EXTRA_TEXT,"");
+            it.setType("message/rfc822");
+            startActivity(Intent.createChooser(it,"Choose Mail App"));
+            /*
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("");
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sales@doctorskin.net"});
             intent.putExtra(Intent.EXTRA_SUBJECT, "");
             intent.putExtra(Intent.EXTRA_TEXT, "");
-            getActivity().startActivity(Intent.createChooser(intent, ""));
+            getActivity().startActivity(Intent.createChooser(intent, ""));*/
         }
     }
 
@@ -398,6 +405,7 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 Log.e("", "" + response.body().toString());
+                Log.e("response",""+response);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response.body().string());

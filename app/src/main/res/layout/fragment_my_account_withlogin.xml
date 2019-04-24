@@ -675,28 +675,31 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#d1cece" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="100dp"
                     android:weightSum="2">
 
                     <LinearLayout
+                        android:id="@+id/lv_call"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:weightSum="4">
+                        android:padding="10dp"
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:padding="10dp">
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
 
                             <ImageView
                                 android:id="@+id/iv_product"
@@ -704,27 +707,14 @@
                                 android:layout_height="30dp"
                                 android:layout_gravity="center"
                                 android:src="@drawable/call" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal"
-                            android:layout_weight="3">
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Phone"
+                                android:layout_marginTop="5dp"
                                 android:textSize="16dp"
-                                android:layout_marginLeft="10dp"
                                 android:textStyle="bold"
-                                android:textColor="@color/ed_text_signin"
-                                android:gravity="center" />
-
+                                android:textColor="@color/ed_text_signin" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -735,51 +725,44 @@
                         android:background="#d1cece" />
 
                     <LinearLayout
+                        android:id="@+id/lv_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_weight="1"
-                        android:weightSum="4">
+                        android:layout_weight="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:padding="10dp">
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_gravity="center"
                                 android:src="@drawable/email" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal"
-                            android:layout_weight="3">
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Email"
                                 android:textSize="16dp"
-                                android:layout_marginLeft="10dp"
                                 android:textStyle="bold"
+                                android:layout_marginTop="5dp"
                                 android:textColor="@color/ed_text_signin"
                                 android:gravity="center" />
-
                         </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="100dp"
+                    android:background="#d1cece" />
 
             </LinearLayout>
         </ScrollView>

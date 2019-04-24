@@ -95,7 +95,9 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
         holder.cart_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cart_adapter.removeItem(position);
+                String cart_id=cart_model.getProduct_id();
+                Log.e("cartid_onlick",""+cart_id);
+                CALL_REMOVE_FROM_CART_API(cart_id,position);
             }
         });
 ///wishlist
@@ -284,6 +286,7 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
                     Log.e("status_prepare_cart", "" + status);
                     Log.e("jsonshow", "" + jsonObject);
                     if (status.equalsIgnoreCase("success")) {
+                        holder.tv_cart_quantity_total.setText(String.valueOf(Resultt));
                         holder.iv_cart_quantity_increase.setEnabled(true);
                         holder.iv_cart_quantity_decrease.setEnabled(true);
 
@@ -304,7 +307,7 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
                             Bottom_navigation.item_count.setText(jsonObject.getString("items_qty"));
 
                         }
-                        holder.tv_cart_quantity_total.setText(String.valueOf(Resultt));
+
 
                         //holder.tv_cart_quantity_total.setText(item_qty);
 
@@ -328,15 +331,8 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
         return cartList.size();
     }
 
-    public void removeItem(int position) {
-        product_id = cartList.get(position).getProduct_id();
-        Log.e("remove_product_id_113", "" + product_id);
-        CALL_REMOVE_FROM_CART_API(product_id);
-        cartList.remove(position);
-        notifyItemRemoved(position);
-    }
 
-    public void CALL_REMOVE_FROM_CART_API(String proddd_id) {
+    public void CALL_REMOVE_FROM_CART_API(String proddd_id, final int position) {
         String loginflag = Login_preference.getLogin_flag(context);
         if (loginflag.equalsIgnoreCase("1") || loginflag == "1") {
             ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
@@ -351,6 +347,10 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
         remove_from_cart.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.e("position_show",""+position);
+                cartList.remove(position);
+                //notifyItemRemoved(position);
+                cart_adapter.notifyDataSetChanged();
                 Log.e("responjse_remove_cart", "" + response.body().toString());
                 JSONObject jsonObject = null;
                 try {

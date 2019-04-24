@@ -22,12 +22,10 @@ import com.sismatix.drskin.R;
 
 
 public class MyAccount_withlogin extends Fragment implements View.OnClickListener {
-    LinearLayout lv_signout,lv_mywwishlist,lv_accountinfo,lv_aboutus,lv_tac,lv_privacypolicy,lv_without_login,lv_withlogin,lv_orderhistory;
+    LinearLayout lv_signout,lv_mywwishlist,lv_accountinfo,lv_aboutus,lv_tac,lv_privacypolicy,lv_without_login,lv_withlogin,lv_orderhistory, lv_call, lv_email;
     TextView tv_email,tv_username;
     android.support.v7.widget.Toolbar toolbar_myaccount;
     String loginflagmain;
-
-
     public MyAccount_withlogin() {
         // Required empty public constructor
     }
@@ -61,6 +59,8 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         lv_tac.setOnClickListener(this);
         lv_orderhistory.setOnClickListener(this);
         lv_without_login.setOnClickListener(this);
+        lv_call.setOnClickListener(this);
+        lv_email.setOnClickListener(this);
         tv_email.setText(Login_preference.getemail(getActivity()));
         tv_username.setText(Login_preference.getfullname(getActivity()));
         return v;
@@ -77,6 +77,8 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         lv_privacypolicy=(LinearLayout)v.findViewById(R.id.lv_privacypolicy);
         lv_orderhistory=(LinearLayout)v.findViewById(R.id.lv_orderhistory);
         lv_aboutus=(LinearLayout)v.findViewById(R.id.lv_aboutus);
+        lv_call=(LinearLayout)v.findViewById(R.id.lv_call);
+        lv_email=(LinearLayout)v.findViewById(R.id.lv_email);
         tv_email=(TextView) v.findViewById(R.id.tv_email);
         tv_username=(TextView) v.findViewById(R.id.tv_username);
         toolbar_myaccount= (android.support.v7.widget.Toolbar) v.findViewById(R.id.toolbar_myaccount);
@@ -102,6 +104,24 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
             pushFragment(new SignIn(),"signin");
         }else if(view == lv_orderhistory){
             pushFragment(new MyOrders(),"myorders");
+        }else if (view == lv_call) {
+            Intent i = new Intent(Intent.ACTION_DIAL);
+            i.setData(Uri.parse("tel:" + 923145689));
+            getActivity().startActivity(i);
+        } else if (view == lv_email) {
+            Intent it = new Intent(Intent.ACTION_SEND);
+            it.putExtra(Intent.EXTRA_EMAIL, new String[]{"sales@doctorskin.net"});
+            it.putExtra(Intent.EXTRA_SUBJECT,"");
+            it.putExtra(Intent.EXTRA_TEXT,"");
+            it.setType("message/rfc822");
+            startActivity(Intent.createChooser(it,"Choose Mail App"));
+            /*
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sales@doctorskin.net"});
+            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+            intent.putExtra(Intent.EXTRA_TEXT, "");
+            getActivity().startActivity(Intent.createChooser(intent, ""));*/
         }
     }
 

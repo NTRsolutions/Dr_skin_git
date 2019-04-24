@@ -19,14 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.myfatoorah.sdk.MFSDKListener;
 import com.myfatoorah.sdk.model.invoice.InvoiceItem;
-import com.myfatoorah.sdk.model.invoice.InvoiceModel;
-import com.myfatoorah.sdk.model.transaction.TransactionResponseModel;
-import com.myfatoorah.sdk.utils.Country;
-import com.myfatoorah.sdk.utils.CurrencyISO;
-import com.myfatoorah.sdk.utils.InvoiceLanguage;
-import com.myfatoorah.sdk.utils.PaymentMethod;
 import com.myfatoorah.sdk.views.MFSDK;
 import com.sismatix.drskin.Activity.Paymentscreen;
 import com.sismatix.drskin.Adapter.Confirmation_cart_Adapter;
@@ -39,7 +32,6 @@ import com.sismatix.drskin.R;
 import com.sismatix.drskin.Retrofit.ApiClient;
 import com.sismatix.drskin.Retrofit.ApiInterface;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -51,19 +43,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.sismatix.drskin.Adapter.Cart_Delivery_Adapter.shippingmethod;
-import static com.sismatix.drskin.Adapter.Payment_Method_Adapter.paymentcode_ada;
 import static com.sismatix.drskin.Fragment.MyCart.grand_total;
 import static com.sismatix.drskin.Fragment.MyCart.lv_productnotavelable;
 import static com.sismatix.drskin.Fragment.MyCart.productslist;
 import static com.sismatix.drskin.Fragment.MyCart.qoute_id_cart;
 import static com.sismatix.drskin.Fragment.MyCart.qt;
-import static com.sismatix.drskin.Fragment.MyCart.tv_maintotal;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Confirm_Order extends Fragment implements MFSDKListener, View.OnClickListener {
+public class Confirm_Order extends Fragment  {
 
     TextView confirmpay_add, tv_cart_edit_confirm,grand_totall;
     RecyclerView recyclerview_confirmation;
@@ -110,14 +99,11 @@ public class Confirm_Order extends Fragment implements MFSDKListener, View.OnCli
             discount= bundle.getString("discount");
             grand_tot= bundle.getString("grand_tot_cart");
             coupon_code= bundle.getString("coupon_code");
-
             paymentCode = bundle.getString("paymentcodee");
             Log.e("conf_paycode", "" + paymentCode);
 
         }
-
         if (CheckNetwork.isNetworkAvailable(getActivity())) {
-
             CALL_SHIPPING_ADDRESS_API();
             prepareConfirmCart();
 
@@ -160,11 +146,20 @@ public class Confirm_Order extends Fragment implements MFSDKListener, View.OnCli
         lv_ordernow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (CheckNetwork.isNetworkAvailable(getActivity())) {
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("grand_tot_cart", "" + totel_pay);
+                bundle1.putString("productlist", "" + productlist_pay);
+                bundle1.putString("shippingMethod", "" + shippingMethod);
+                bundle1.putString("paymentCode", "" + paymentCode);
+                bundle1.putString("address", "" + confirmpay_add.getText().toString());
+                Intent intent=new Intent(getActivity(),Paymentscreen.class);
+                intent.putExtras(bundle1);
+                startActivity(intent);
+               /* if (CheckNetwork.isNetworkAvailable(getActivity())) {
                     Ordernow();
                 } else {
                     Toast.makeText(getContext(), "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
         return v;
@@ -217,10 +212,6 @@ public class Confirm_Order extends Fragment implements MFSDKListener, View.OnCli
 
     }
 
-    private void paymentapi() {
-       // MFSDK.INSTANCE.createInvoice(this, generateInvoiceModel(), "en", PaymentMethod.ALL);
-        MFSDK.INSTANCE.createInvoice((MFSDKListener) context, generateInvoiceModel(), "en", PaymentMethod.ALL);
-    }
 
     private void loadFragment(final String order) {
         Handler handler = new Handler();
@@ -437,49 +428,5 @@ public class Confirm_Order extends Fragment implements MFSDKListener, View.OnCli
         recyclerview_confirmation.setItemAnimator(new DefaultItemAnimator());
         recyclerview_confirmation.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recyclerview_confirmation.setAdapter(confirmation_cart_adapter);
-    }
-
-    private InvoiceModel generateInvoiceModel() {
-        InvoiceModel invoiceModel = new InvoiceModel();
-
-        // Not required to send all the following data, the only required are (invoiceValue, customerName, CountryCodeId, DisplayCurrencyId) and the other are optional.
-        invoiceModel.setInvoiceValue(5.0); // Note this value will be ignored if you already add products (invoiceItems) to the invoice
-        invoiceModel.setCustomerName("Test Name");
-        invoiceModel.setInvoiceItem(invoiceItems);
-        invoiceModel.setLanguage(InvoiceLanguage.EN); // You can select any other language from the 'InvoiceLanguage' object
-        invoiceModel.setDisplayCurrencyIsoAlpha(CurrencyISO.Kuwaiti_Dinar_KWD); // You can select any other displayCurrencyId from the 'Currency' object
-        invoiceModel.setCountryCodeId(Country.KUWAIT); // You can select any other countryCodeId from the 'Country' object
-        invoiceModel.setCustomerAddress("");
-        invoiceModel.setCustomerBlock("");
-        invoiceModel.setCustomerCivilId("");
-        invoiceModel.setCustomerEmail("test@test.com");
-        invoiceModel.setCustomerHouseBuildingNo("");
-        invoiceModel.setCustomerMobile("");
-        invoiceModel.setCustomerReference("");
-        invoiceModel.setCustomerStreet("");
-        invoiceModel.setExpireDate("2030-01-08T11:04:42.005Z");
-        invoiceModel.setApiCustomFileds("");
-
-        return invoiceModel;
-    }
-
-    @Override
-    public void onClick(View view) {
-
-    }
-
-    @Override
-    public void onCanceled(@NotNull String s) {
-
-    }
-
-    @Override
-    public void onFailed(int i, @NotNull String s) {
-
-    }
-
-    @Override
-    public void onSuccess(@NotNull TransactionResponseModel transactionResponseModel) {
-
     }
 }

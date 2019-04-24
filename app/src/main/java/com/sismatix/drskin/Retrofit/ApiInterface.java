@@ -247,4 +247,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<ResponseBody> GetOrderSummary(@Field("order_id") String order_id);
 
+
+    //http://doctorskin.net/customapi/AppPayFatoorahResponce.php?paymentId=0505275071956352
+    @POST("AppPayFatoorahResponce.php")
+    @FormUrlEncoded
+    Call<ResponseBody> AppPayFatoorahResponce(@Field("paymentId") String order_id);
 }
