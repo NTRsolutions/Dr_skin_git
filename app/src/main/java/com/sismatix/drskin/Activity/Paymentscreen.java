@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.gdacciaro.iOSDialog.iOSDialog;
+import com.gdacciaro.iOSDialog.iOSDialogBuilder;
+import com.gdacciaro.iOSDialog.iOSDialogClickListener;
 import com.google.gson.Gson;
 import com.myfatoorah.sdk.MFSDKListener;
 import com.myfatoorah.sdk.model.invoice.InvoiceItem;
@@ -50,8 +53,8 @@ import static com.sismatix.drskin.Adapter.Payment_Method_Adapter.paymentcode_ada
 import static com.sismatix.drskin.Fragment.MyCart.qt;
 
 public class Paymentscreen extends AppCompatActivity implements MFSDKListener, View.OnClickListener{
-    private ArrayList<InvoiceItem> invoiceItems = null;
-    String grand_tot_cart,productlist,shippingMethod,address,paymentCode;
+    private ArrayList<InvoiceItem> invoiceItems = new ArrayList<InvoiceItem>();
+    String grand_tot_cart,productlist,shippingMethod,address,paymentCode,shippingprice,discount_pay;
     JSONArray jsonArray_pay;
     Context context;
     @Override
@@ -64,28 +67,50 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
             grand_tot_cart = bundle.getString("grand_tot_cart");
             productlist = bundle.getString("productlist");
             shippingMethod = bundle.getString("shippingMethod");
+            shippingprice = bundle.getString("shippingprice");
+            discount_pay = bundle.getString("discount_pay");
             paymentCode = bundle.getString("paymentCode");
             address = bundle.getString("address");
+            Log.e("grand_tot_cart",""+grand_tot_cart);
+            Log.e("discount_pay",""+discount_pay);
             try{
-                invoiceItems = new ArrayList();
-                InvoiceItem item = new InvoiceItem();
                 JSONArray array = new JSONArray(productlist);
                 Log.e("jsonarr_cart", "" + array);
                 for (int i = 0; i < array.length(); i++) {
                     try {
+                        InvoiceItem itemm = new InvoiceItem();
                         JSONObject vac_object = array.getJSONObject(i);
                         Log.e("Name", "" + vac_object.getString("product_name"));
-                        Double totel_pay = Double.valueOf(vac_object.getString("product_price").substring(1));
-                        item.setProductName(vac_object.getString("product_name"));
-                        item.setQuantity(Integer.valueOf(vac_object.getString("product_qty")));
-                        item.setUnitPrice(Double.valueOf(totel_pay));
-                        invoiceItems.add(item);
+                        String currentString = vac_object.getString("product_price");
+                        String[] separated = currentString.split("KWD");
+                        String A =separated[0]; // this will contain "Fruit"
+                        Double totel_pay= (Double.parseDouble(separated[1])); // this will contain " they taste good"
+                        Log.e("product_price",""+totel_pay);
+                        itemm.setProductName(vac_object.getString("product_name"));
+                        itemm.setQuantity(Integer.valueOf(vac_object.getString("product_qty")));
+                        itemm.setUnitPrice(Double.valueOf(totel_pay));
+                        invoiceItems.add(itemm);
                     } catch (Exception e) {
                         Log.e("Exception", "" + e);
                     } finally {
                     }
                 }
+                Log.e("array_stack","");
+                InvoiceItem item = new InvoiceItem();
+                item.setProductName("Shipping Amount");
+                item.setQuantity(1);
+                item.setUnitPrice(Double.valueOf(shippingprice));
+                invoiceItems.add(item);
+                if (discount_pay !="null" || discount_pay != "" || discount_pay!= null && discount_pay != "0.00"){
+                    InvoiceItem item1 = new InvoiceItem();
+                    item1.setProductName("Discount Amount");
+                    item1.setQuantity(1);
+                    item1.setUnitPrice(Double.valueOf("-"+discount_pay));
+                    invoiceItems.add(item1);
+                }
+
             }catch (Exception e){
+            }finally {
             }
         }
         MFSDK.INSTANCE.init(Config.BASE_URL, Config.EMAIL, Config.PASSWORD);
@@ -105,7 +130,7 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
         invoiceModel.setLanguage(InvoiceLanguage.EN); // You can select any other language from the 'InvoiceLanguage' object
         invoiceModel.setDisplayCurrencyIsoAlpha(CurrencyISO.Kuwaiti_Dinar_KWD); // You can select any other displayCurrencyId from the 'Currency' object
         invoiceModel.setCountryCodeId(Country.KUWAIT); // You can select any other countryCodeId from the 'Country' object
-        invoiceModel.setCustomerAddress("");
+        invoiceModel.setCustomerAddress(address);
         invoiceModel.setCustomerBlock("");
         invoiceModel.setCallBackUrl("http://doctorskin.net/customapi/");
         invoiceModel.setCustomerCivilId("");
@@ -124,10 +149,41 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
     @Override
     public void onCanceled(@NotNull String s) {
         Log.e("onCanceled",""+s);
+        new iOSDialogBuilder(Paymentscreen.this)
+                .setTitle("Payment Canceled")
+                .setSubtitle(s)
+                .setBoldPositiveLabel(true)
+                .setCancelable(false)
+                .setPositiveListener(("OK"),new iOSDialogClickListener() {
+                    @Override
+                    public void onClick(iOSDialog dialog) {
+
+                        Intent intent=new Intent(Paymentscreen.this,Bottom_navigation.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+
+                    }
+                })
+                .build().show();
     }
     @Override
     public void onFailed(int i, @NotNull String s) {
         Log.e("onFailed",""+s);
+        new iOSDialogBuilder(Paymentscreen.this)
+                .setTitle("Payment Filed")
+                .setSubtitle(s)
+                .setBoldPositiveLabel(true)
+                .setCancelable(false)
+                .setPositiveListener(("OK"),new iOSDialogClickListener() {
+                    @Override
+                    public void onClick(iOSDialog dialog) {
+                        Intent intent=new Intent(Paymentscreen.this,Bottom_navigation.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+
+                    }
+                })
+                .build().show();
     }
     @Override
     public void onSuccess(@NotNull TransactionResponseModel transactionResponseModel) {
@@ -138,16 +194,6 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
         Log.e("AuthorizationId",""+transactionResponseModel.getAuthorizationId());
         String Authorization=transactionResponseModel.getAuthorizationId();
         Paymentsucessapi(Authorization);
-
-        /*try {
-            JSONObject jsonObject = new JSONObject(new Gson().toJson(transactionResponseModel));
-            Log.e("jsonObject",""+jsonObject);
-
-            JSONObject object=new JSONObject(String.valueOf(jsonObject));
-            Log.e("","InvoiceDisplayValue"+object.getString("InvoiceDisplayValue"));
-        } catch (Exception e) {
-            Log.e("exception",""+e);
-        }*/
     }
 
     private void Paymentsucessapi(String authorization) {
@@ -211,19 +257,15 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
                     if (code.equalsIgnoreCase("200")) {
                         Toast.makeText(Paymentscreen.this, "" + meassg, Toast.LENGTH_SHORT).show();
                         String order=jsonObject.getString("order_id");
+                        Log.e("order",""+order);
                         //  paymentapi();
                         Bundle bundle = new Bundle();
                         bundle.putString("order", "" + order);
-                        Fragment myFragment = new OrderSummary();
-                        myFragment.setArguments(bundle);
-                        Paymentscreen.this.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,
-                                0, 0, R.anim.fade_out).replace(R.id.frameLayout_checkout, myFragment).addToBackStack(null).commit();
-                        Paymentscreen.this.finish();
-                      /*  Intent intent=new Intent(Paymentscreen.this,Paymentscreen.class);
-                        intent.putExtras(bundle1);
-                        startActivity(intent);*/
+                        Intent intent=new Intent(Paymentscreen.this,Order_summery_activty.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
 
-                        //loadFragment(order);
+
                     } else if (code.equalsIgnoreCase("error")) {
                         Toast.makeText(Paymentscreen.this, "" + meassg, Toast.LENGTH_SHORT).show();
                     }
@@ -239,13 +281,5 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
             }
         });
 
-    }
-    private void pushFragment(Fragment fragment, String add_to_backstack) {
-        Bundle bundle = new Bundle();
-        bundle.putString("order_id", "" + shippingmethod);
-        Fragment myFragment = new Confirm_Order();
-        myFragment.setArguments(bundle);
-        Paymentscreen.this.getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in,
-                0, 0, R.anim.fade_out).replace(R.id.frameLayout_checkout, myFragment).addToBackStack(null).commit();
     }
 }

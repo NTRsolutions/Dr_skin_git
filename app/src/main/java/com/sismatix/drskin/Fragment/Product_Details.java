@@ -295,7 +295,11 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
                         Log.e("json", i + "=" + value);
                     }
                     mPager.setAdapter(new SlideingImageAdapter(getActivity(), sliderimage_models));
-                    indicator.setViewPager(mPager);
+                   // indicator.setViewPager(mPager);
+                    if(jsonArray.length()>1)
+                    {
+                        indicator.setViewPager(mPager);
+                    }
                 } catch (Exception e) {
                     Log.e("", "" + e);
                 }
@@ -420,6 +424,7 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
                         Login_preference.setCart_item_count(getActivity(), jsonObject.getString("items_qty"));
                         cart_count.setText(Login_preference.getCart_item_count(getActivity()));
                         String item_count = jsonObject.getString("items_qty");
+                        Log.e("item_count",""+item_count);
                         if (item_count != null && !item_count.isEmpty() && !item_count.equals("null")) {
                             Bottom_navigation.tv_bottomcount.setText(jsonObject.getString("items_qty"));
                             Bottom_navigation.item_count.setText(jsonObject.getString("items_qty"));

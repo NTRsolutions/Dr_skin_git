@@ -2,6 +2,8 @@ package com.sismatix.drskin.Fragment;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -9,8 +11,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -47,7 +51,7 @@ import static com.sismatix.drskin.Adapter.Cart_Delivery_Adapter.shippingmethod;
  */
 public class Shipping extends Fragment implements View.OnClickListener {
 
-    LinearLayout lv_shipping_next, lv_addbutton, lv_addnewaddress, lv_main, lv_Addnew, lv_save;
+    LinearLayout lv_shipping_next, lv_addbutton, lv_addnewaddress, lv_main, lv_Addnew, lv_save,lv_shipping_main;
 
     LinearLayout lv_address, lv_edit_address, tv_remov_coupn;
     TextView confirm_name, confirm_address, confirm_state, confirm_city, confirm_phone, tv_apply, tv_subtotal, tv_discount, gren_total;
@@ -77,7 +81,7 @@ public class Shipping extends Fragment implements View.OnClickListener {
 
         AllocateMemory(v);
 
-
+        setupUI(lv_shipping_main);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -89,7 +93,7 @@ public class Shipping extends Fragment implements View.OnClickListener {
 
         }
         Log.e("discount",""+discount);
-        if (discount != null && !discount.isEmpty() && !discount.equals("$0.00")){
+        if (discount != null && !discount.isEmpty() && !discount.equals("KWD0.00")){
             tv_discount.setText(discount);
             tv_apply.setVisibility(View.GONE);
             tv_remov_coupn.setVisibility(View.VISIBLE);
@@ -229,6 +233,7 @@ public class Shipping extends Fragment implements View.OnClickListener {
     private void AllocateMemory(View v) {
 
         lv_address = (LinearLayout) v.findViewById(R.id.lv_address);
+        lv_shipping_main = (LinearLayout) v.findViewById(R.id.lv_shipping_main);
         recyclerview_item_delivery = (RecyclerView) v.findViewById(R.id.recyclerview_item_delivery);
         confirm_name = (TextView) v.findViewById(R.id.confirm_name);
         confirm_address = (TextView) v.findViewById(R.id.confirm_address);
@@ -568,6 +573,7 @@ public class Shipping extends Fragment implements View.OnClickListener {
                             if (fistname != null && !fistname.isEmpty() && !fistname.equals("null")|| apartment != null && !apartment.isEmpty() && !apartment.equals("null")){
                                 lv_addbutton.setVisibility(View.GONE);
                                 lv_address.setVisibility(View.VISIBLE);
+                                lv_main.setVisibility(View.VISIBLE);
                                 MyAddress_Preference.setFirstname(getActivity(), add_obj.getString("firstname"));
                                 MyAddress_Preference.setCountryId(getActivity(), add_obj.getString("country_id"));
                                 MyAddress_Preference.setStreetAddress(getActivity(), add_obj.getString("street"));
@@ -590,6 +596,7 @@ public class Shipping extends Fragment implements View.OnClickListener {
                             }else {
                                 lv_addbutton.setVisibility(View.VISIBLE);
                                 lv_address.setVisibility(View.GONE);
+                                lv_main.setVisibility(View.GONE);
                             }
                         } catch (Exception e) {
                             Log.e("Exception_s", "" + e);
@@ -658,5 +665,38 @@ public class Shipping extends Fragment implements View.OnClickListener {
                 Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+
+        InputMethodManager inputManager = (InputMethodManager) activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+// check if no view has focus:
+        View currentFocusedView = activity.getCurrentFocus();
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

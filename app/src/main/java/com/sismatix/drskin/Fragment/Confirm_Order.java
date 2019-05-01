@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,16 +55,18 @@ import static com.sismatix.drskin.Fragment.MyCart.qt;
  */
 public class Confirm_Order extends Fragment  {
 
-    TextView confirmpay_add, tv_cart_edit_confirm,grand_totall;
+    TextView confirmpay_add, tv_cart_edit_confirm,grand_totall,shipping_price,tv_discount;
     RecyclerView recyclerview_confirmation;
     private List<Cart_Model> cartList = new ArrayList<Cart_Model>();
     private Confirmation_cart_Adapter confirmation_cart_adapter;
     public Call<ResponseBody> cartlistt = null;
     LinearLayout lv_ordernow;
-    String shippingMethod, paymentCode,subtotal,discount,grand_tot,coupon_code;
+    String shippingMethod, paymentCode,subtotal,discount,grand_tot,coupon_code,shippingprice;
     ImageView iv_left;
-    String totel_pay,productlist_pay;
+    String totel_pay,productlist_pay,discount_pay;
+    Double totel_paysend;
     private ArrayList<InvoiceItem> invoiceItems = null;
+    ProgressBar progressBar_confom_cart;
     public static Context context = null;
     public Confirm_Order() {
         // Required empty public constructor
@@ -75,6 +78,7 @@ public class Confirm_Order extends Fragment  {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_confirm_order, container, false);
         context=getActivity();
+        AllocateMemory(v);
         MFSDK.INSTANCE.init(Config.BASE_URL, Config.EMAIL, Config.PASSWORD);
         // You can custom your action bar, but this is optional not required to set this line
         MFSDK.INSTANCE.setUpActionBar("MyFatoorah Payment", R.color.colorPrimary,
@@ -87,7 +91,6 @@ public class Confirm_Order extends Fragment  {
         Checkout.iv_shipping_done.setVisibility(View.VISIBLE);
         Checkout.iv_confirmation_done.setVisibility(View.INVISIBLE);
 
-        AllocateMemory(v);
 
 
         Bundle bundle = this.getArguments();
@@ -147,9 +150,15 @@ public class Confirm_Order extends Fragment  {
             @Override
             public void onClick(View view) {
                 Bundle bundle1 = new Bundle();
-                bundle1.putString("grand_tot_cart", "" + totel_pay);
+
+                final String s = totel_pay.replace(",", "");
+                Log.e("removestring",""+s);
+                bundle1.putString("grand_tot_cart", "" + s);
+
                 bundle1.putString("productlist", "" + productlist_pay);
                 bundle1.putString("shippingMethod", "" + shippingMethod);
+                bundle1.putString("shippingprice", "" + shippingprice);
+                bundle1.putString("discount_pay", "" + discount_pay);
                 bundle1.putString("paymentCode", "" + paymentCode);
                 bundle1.putString("address", "" + confirmpay_add.getText().toString());
                 Intent intent=new Intent(getActivity(),Paymentscreen.class);
@@ -212,8 +221,7 @@ public class Confirm_Order extends Fragment  {
 
     }
 
-
-    private void loadFragment(final String order) {
+    /*private void loadFragment(final String order) {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -225,9 +233,9 @@ public class Confirm_Order extends Fragment  {
                         0, 0, R.anim.fade_out).replace(R.id.rootLayout, myFragment).addToBackStack(null).commit();
             }
         }, 1000);
-    }
+    }*/
     private void prepareConfirmCart() {
-        //progressBar_cart.setVisibility(View.VISIBLE);
+        progressBar_confom_cart.setVisibility(View.VISIBLE);
         cartList.clear();
         String email = Login_preference.getemail(getActivity());
         String countryid_confirm = MyAddress_Preference.getCountryId(getActivity());
@@ -260,18 +268,39 @@ public class Confirm_Order extends Fragment  {
                 JSONObject jsonObject = null;
                 try {
 
-                    //progressBar_cart.setVisibility(View.GONE);
+                    progressBar_confom_cart.setVisibility(View.GONE);
                     jsonObject = new JSONObject(response.body().string());
                     Log.e("jason_response", "" + jsonObject);
                     String status = jsonObject.getString("status");
                     Log.e("status_prepare_cart", "" + status);
 
-                    if (status.equalsIgnoreCase("success")) {
+                    if (status.equalsIgnoreCase("Success")) {
                         lv_productnotavelable.setVisibility(View.VISIBLE);
+
+                        String currentstr = jsonObject.getString("grand_total");
+                        String[] separate = currentstr.split("KWD");
+                        String s =separate[0]; // this will contain "Fruit"
+
                         grand_totall.setText(jsonObject.getString("grand_total"));
-                        Log.e("gtot", "" + grand_total);
-                        totel_pay =jsonObject.getString("grand_total").substring(1);
+                        totel_pay =separate[1]; // this will contain " they taste good"
+                        Log.e("status_condisation", "" + separate[1]);
                         Log.e("price_pass",""+totel_pay);
+
+                        String currentstrrr = jsonObject.getString("discount_amount");
+                        String[] separateee = currentstrrr.split("KWD");
+                        String sss =separateee[0]; // this will contain "Fruit"
+
+                        tv_discount.setText(jsonObject.getString("discount_amount"));
+                        discount_pay =separateee[1]; // this will contain " they taste good"
+                        Log.e("discount_condisation", "" + separate[1]);
+                        Log.e("price_discount",""+discount_pay);
+
+                        shipping_price.setText(jsonObject.getString("shipping_amount"));
+                        String currentString = jsonObject.getString("shipping_amount");
+                        String[] separated = currentString.split("KWD");
+                        String A =separated[0]; // this will contain "Fruit"
+                        shippingprice= separated[1]; // this will contain " they taste good"
+                        Log.e("shippingprice",""+shippingprice);
                         //tv_maintotal.setText(grand_total);
                         // Bottom_navigation.Convert_String_First_Letter(tv_maintotal, grand_total);
 
@@ -335,6 +364,7 @@ public class Confirm_Order extends Fragment  {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                progressBar_confom_cart.setVisibility(View.GONE);
             }
         });
 
@@ -415,10 +445,13 @@ public class Confirm_Order extends Fragment  {
     private void AllocateMemory(View v) {
         confirmpay_add = (TextView) v.findViewById(R.id.confirmpay_add);
         grand_totall = (TextView) v.findViewById(R.id.grand_totall);
+        shipping_price = (TextView) v.findViewById(R.id.shipping_price);
+        tv_discount = (TextView) v.findViewById(R.id.tv_discount);
         recyclerview_confirmation = (RecyclerView) v.findViewById(R.id.recyclerview_confirmation);
         tv_cart_edit_confirm = (TextView) v.findViewById(R.id.tv_cart_edit_confirm);
         iv_left = (ImageView) v.findViewById(R.id.iv_left);
         lv_ordernow = (LinearLayout) v.findViewById(R.id.lv_ordernow);
+        progressBar_confom_cart = (ProgressBar) v.findViewById(R.id.progressBar_confom_cart);
 
         confirmation_cart_adapter = new Confirmation_cart_Adapter(getActivity(), cartList);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

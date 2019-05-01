@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -72,6 +73,7 @@ public class MyOrders extends Fragment {
     }
 
     private void CALL_Orderlist_API() {
+        progressBar.setVisibility(View.VISIBLE);
         my_order_models.clear();
         String cusid = Login_preference.getcustomer_id(getContext());
         ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
@@ -81,7 +83,7 @@ public class MyOrders extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.e("response_mo", "" + response.body().toString());
-
+                progressBar.setVisibility(View.GONE);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response.body().string());
@@ -113,20 +115,31 @@ public class MyOrders extends Fragment {
                     }
 
                 } catch (Exception e) {
+
                     Log.e("", "" + e);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private void AllocateMemory(View v) {
         recycler_orderlist = (RecyclerView) v.findViewById(R.id.recycler_orderlist);
-        progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) v.findViewById(R.id.progressBar_myorders);
         toolbar_myorders = (Toolbar) v.findViewById(R.id.toolbar_myorders);
 
         my_orderlist_adapter = new My_orderlist_Adapter(getActivity(), my_order_models);

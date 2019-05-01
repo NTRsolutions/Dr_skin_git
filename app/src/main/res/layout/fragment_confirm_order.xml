@@ -64,6 +64,7 @@
                                 android:layout_weight="2.8"
                                 android:gravity="center|end"
                                 android:text="@string/edit"
+                                android:visibility="invisible"
                                 android:textColor="@color/black"
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
@@ -155,9 +156,19 @@
                             <android.support.v7.widget.RecyclerView
                                 android:id="@+id/recyclerview_confirmation"
                                 android:layout_width="match_parent"
+                                android:visibility="visible"
                                 android:layout_height="match_parent" />
 
-
+                            <ProgressBar
+                                android:id="@+id/progressBar_confom_cart"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="50dp"
+                                android:layout_marginBottom="50dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:indeterminateDrawable="@drawable/progressbar_ui"
+                                android:visibility="gone" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -165,6 +176,95 @@
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
                         android:background="#d1cece" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SHIPPING FEES"
+                                android:textColor="@color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/shipping_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.00"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="DISCOUNT"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tv_discount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0.00"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
             </ScrollView>
@@ -175,6 +275,7 @@
             android:layout_height="match_parent"
             android:layout_weight="3.3"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,7 +295,7 @@
                         android:layout_height="wrap_content"
                         android:text="TOTAL"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="14dp"
                         android:textStyle="bold" />
                 </LinearLayout>
                 <LinearLayout
@@ -210,7 +311,7 @@
                         android:layout_height="wrap_content"
                         android:text="0.00"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="15dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -224,7 +325,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/rounded_btn_black"
                 android:orientation="horizontal"
                 android:weightSum="4">
@@ -236,7 +336,7 @@
                     android:layout_weight="0.4"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="10dp"
+                    android:padding="5dp"
                     android:weightSum="2">
 
                     <LinearLayout
@@ -267,7 +367,7 @@
                             android:gravity="center"
                             android:text="@string/ordernow"
                             android:textColor="@color/white"
-                            android:textSize="16sp" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 

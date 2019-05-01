@@ -56,12 +56,13 @@ public class MyCart extends Fragment {
     public static TextView tv_maintotal;
     public static Context context = null;
     LinearLayout lv_place_order;
-    public static ProgressBar progressBar_cart;
+    ProgressBar progressBar_cart;
     public static String cart_items_count;
     public static String loginflag,subtotal,coupon_code,discount_amount;
     public static String qt, qoute_id_cart, productslist;
     public static LinearLayout lv_productnotavelable,lv_Checkout;
     ImageView iv_close;
+
 
     Dialog fullscreenDialog;
     public MyCart() {
@@ -77,6 +78,7 @@ public class MyCart extends Fragment {
         lv_Checkout=(LinearLayout) v.findViewById(R.id.lv_Checkout);
         tv_maintotal=(TextView) v.findViewById(R.id.tv_maintotal);
         iv_close=(ImageView) v.findViewById(R.id.iv_close);
+        progressBar_cart=(ProgressBar) v.findViewById(R.id.progressBar_cart);
         loginflag = Login_preference.getLogin_flag(getActivity());
         cart_adapter = new Cart_List_Adapter(getActivity(), cartList);
         // RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -87,6 +89,9 @@ public class MyCart extends Fragment {
         cart_recyclerview.setItemAnimator(new DefaultItemAnimator());
         cart_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         cart_recyclerview.setAdapter(cart_adapter);
+
+
+
 
         iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,8 +172,9 @@ public class MyCart extends Fragment {
         transaction.commit();
     }
     public void prepare_Cart() {
-        //progressBar_cart.setVisibility(View.VISIBLE);
+        progressBar_cart.setVisibility(View.VISIBLE);
         cartList.clear();
+        cart_adapter.notifyDataSetChanged();
         String email = Login_preference.getemail(getContext());
         String loginflag = Login_preference.getLogin_flag(getContext());
         Log.e("customeriddd", "" + Login_preference.getcustomer_id(getContext()));
@@ -193,7 +199,7 @@ public class MyCart extends Fragment {
 
                 JSONObject jsonObject = null;
                 try {
-                    //progressBar_cart.setVisibility(View.GONE);
+                    progressBar_cart.setVisibility(View.GONE);
                     jsonObject = new JSONObject(response.body().string());
                     Log.e("jason_response",""+jsonObject);
                     String status = jsonObject.getString("status");
@@ -213,6 +219,7 @@ public class MyCart extends Fragment {
                         Log.e("items_count",""+jsonObject.getString("items_qty"));
                         coupon_code=jsonObject.getString("coupon_code");
                         discount_amount=jsonObject.getString("discount_amount");
+                        Log.e("discount_amount",""+discount_amount);
                         /*if (item_count != null && !item_count.isEmpty() && !item_count.equals("null")){
                             Bottom_navigation.tv_bottomcount.setText(jsonObject.getString("items_count"));
                             Bottom_navigation.item_count.setText(jsonObject.getString("items_count"));
@@ -221,6 +228,7 @@ public class MyCart extends Fragment {
                             Bottom_navigation.tv_bottomcount.setText("0");
                             Bottom_navigation.item_count.setText("0");
                         }*/
+
                         productslist = jsonObject.getString("products");
                         Log.e("prod_list_cart", "" + productslist);
                         if (productslist.equalsIgnoreCase("[]") || productslist.equalsIgnoreCase("")) {
@@ -292,6 +300,7 @@ public class MyCart extends Fragment {
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                progressBar_cart.setVisibility(View.GONE);
                 Toast.makeText(context, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });

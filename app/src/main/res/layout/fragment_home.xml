@@ -55,7 +55,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/video_slider"
                 android:weightSum="2"
                 android:orientation="vertical">
                 <LinearLayout
@@ -69,6 +69,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="16dp"
+                        android:visibility="gone"
                         android:textColor="@color/black"
                         android:text="work in progress"/>
                     <android.support.v4.view.ViewPager
@@ -119,6 +120,15 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/colorPrimary"
                 android:id="@+id/recycler_cuntrylist"/>
+            <ProgressBar
+                android:id="@+id/progressBar_home"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/progressbar_ui"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>

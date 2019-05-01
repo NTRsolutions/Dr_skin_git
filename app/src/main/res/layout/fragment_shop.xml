@@ -68,6 +68,7 @@
                                     android:layout_alignBottom="@+id/img_eagleeye"
                                     android:layout_marginBottom="5dp"
                                     android:layout_marginLeft="10dp"
+                                    android:tint="@color/black"
                                     android:layout_toRightOf="@+id/img_eagleeye"
                                     android:src="@drawable/ic_shopping_cart_black_36dp" />
                                 <Button

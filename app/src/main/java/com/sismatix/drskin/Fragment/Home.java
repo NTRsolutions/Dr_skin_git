@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -65,6 +66,7 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
     StringRequest stringRequest;
     private String URL_HOMEPAGE;
     private CircleIndicator indicator;
+    ProgressBar progressBar_home;
 
     public Home() {
 
@@ -78,6 +80,7 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
         recycler_cuntrylist = (RecyclerView) v.findViewById(R.id.recycler_cuntrylist);
         mPager = (ViewPager) v.findViewById(R.id.pager);
         indicator = (CircleIndicator) v.findViewById(R.id.indicator);
+        progressBar_home = (ProgressBar) v.findViewById(R.id.progressBar_home);
         cuntrylist_adapter = new Cuntrylist_Adapter(getActivity(), cuntrylist_models);
         recycler_cuntrylist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recycler_cuntrylist.setItemAnimator(new DefaultItemAnimator());
@@ -100,7 +103,8 @@ recycler_cuntrylist.setLayoutManager(layoutManager);*/
     }
 
     private void CALL_PRODUCT_CATEGORY_API() {
-        //progressBar.setVisibility(View.VISIBLE);
+        progressBar_home.setVisibility(View.VISIBLE);
+
         cuntrylist_models.clear();
         ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> categorylist = api.categorylist("all");
@@ -109,7 +113,7 @@ recycler_cuntrylist.setLayoutManager(layoutManager);*/
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
                 Log.e("response", "" + response.body().toString());
-                // progressBar.setVisibility(View.GONE);
+                progressBar_home.setVisibility(View.GONE);
                 cuntrylist_models.clear();
                 JSONObject jsonObject = null;
                 try {
@@ -146,6 +150,7 @@ recycler_cuntrylist.setLayoutManager(layoutManager);*/
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                progressBar_home.setVisibility(View.GONE);
             }
         });
     }

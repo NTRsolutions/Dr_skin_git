@@ -1,6 +1,8 @@
 package com.sismatix.drskin.Fragment;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -8,8 +10,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -40,12 +46,12 @@ public class Search extends Fragment implements SearchView.OnQueryTextListener {
     private Product_recycler_adapter product_adapter;
     SearchView searchView;
     RecyclerView recyclerview_search;
+    LinearLayout lv_search_parent;
 
 
     public Search() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,21 +60,19 @@ public class Search extends Fragment implements SearchView.OnQueryTextListener {
         View v=inflater.inflate(R.layout.fragment_search, container, false);
         searchView = (SearchView)v.findViewById(R.id.search);
         recyclerview_search = (RecyclerView)v.findViewById(R.id.recyclerview_search);
-
+        lv_search_parent = (LinearLayout) v.findViewById(R.id.lv_search_parent);
         product_adapter = new Product_recycler_adapter(getActivity(), product_model);
         recyclerview_search.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recyclerview_search.setItemAnimator(new DefaultItemAnimator());
         recyclerview_search.setAdapter(product_adapter);
         searchView.setOnQueryTextListener(this);
-       // setupUI(lv_search_parent);
+        setupUI(lv_search_parent);
         return v;
     }
-
     @Override
     public boolean onQueryTextSubmit(String s) {
         return false;
     }
-
     @Override
     public boolean onQueryTextChange(String newText) {
         String text = newText;
@@ -150,5 +154,32 @@ public class Search extends Fragment implements SearchView.OnQueryTextListener {
 
 
 
+    }
+    public void setupUI(View view) {
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+            });
+        }
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputManager = (InputMethodManager) activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+// check if no view has focus:
+        View currentFocusedView = activity.getCurrentFocus();
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 }

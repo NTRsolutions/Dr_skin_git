@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Drskin</string>
+    <string name="app_name">Dr.glossy</string>
     <string name="title_activity_bottom_navigation">Bottom_navigation</string>
     <string name="title_home">HOME</string>
     <string name="cartt">CART</string>
@@ -40,6 +40,8 @@
             <br/>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.
 ]]>
     </string>
+    <string name="fullname">Enter Fullname</string>
+    <string name="phoneno">Enter Phone number</string>
 
 
 </resources>

@@ -5,18 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_marginBottom="?attr/actionBarSize"
     tools:context=".Fragment.MyOrders">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="4">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3.5"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <android.support.design.widget.AppBarLayout
@@ -65,8 +60,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <android.support.v7.widget.RecyclerView
@@ -75,8 +69,15 @@
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF" />
 
+            <ProgressBar
+                android:id="@+id/progressBar_myorders"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/progressbar_ui"
+                android:visibility="gone" />
         </LinearLayout>
-
-    </LinearLayout>
 
 </LinearLayout>

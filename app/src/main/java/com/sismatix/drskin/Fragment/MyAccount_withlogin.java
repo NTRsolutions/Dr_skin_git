@@ -3,11 +3,13 @@ package com.sismatix.drskin.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,8 +51,6 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
             lv_withlogin.setVisibility(View.GONE);
             lv_without_login.setVisibility(View.VISIBLE);
         }
-
-
         lv_signout.setOnClickListener(this);
         lv_mywwishlist.setOnClickListener(this);
         lv_accountinfo.setOnClickListener(this);
@@ -89,6 +89,8 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         if(view == lv_signout) {
             Login_preference.setLogin_flag(getActivity(), "0");
             Intent intent = new Intent(getActivity(), Bottom_navigation.class);
+            Login_preference.prefsEditor.remove("quote_id").apply();
+            Login_preference.prefsEditor.remove("item_count").apply();
             startActivity(intent);
         }else if(view == lv_mywwishlist){
             pushFragment(new Wishlist(),"wishlist");

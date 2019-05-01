@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class Payment extends Fragment {
     Payment_Method_Adapter payment_method_adapter;
     private List<Payment_Method_Model> payment_method_models = new ArrayList<Payment_Method_Model>();
     String shipping_method, payCode,subtotal,discount,grand_tot,coupon_code;
+    ProgressBar progressBar_payment;
 
     public Payment() {
         // Required empty public constructor
@@ -150,7 +152,7 @@ public class Payment extends Fragment {
     }
 
     private void CALL_PAYMENT_API() {
-
+        progressBar_payment.setVisibility(View.VISIBLE);
         ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> categorylist = api.getPaymentMethods();
         payment_method_models.clear();
@@ -158,6 +160,7 @@ public class Payment extends Fragment {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 Log.e("response_payment", "" + response.body().toString());
+                progressBar_payment.setVisibility(View.GONE);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response.body().string());
@@ -187,10 +190,10 @@ public class Payment extends Fragment {
                     Log.e("Exc", "" + e);
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                progressBar_payment.setVisibility(View.GONE);
             }
         });
 
@@ -206,6 +209,7 @@ public class Payment extends Fragment {
         //   lv_payment_next = (LinearLayout)v.findViewById(R.id.lv_payment_next);
         lv_left = (LinearLayout) v.findViewById(R.id.lv_left);
         lv_nextt = (LinearLayout) v.findViewById(R.id.lv_nextt);
+        progressBar_payment = (ProgressBar) v.findViewById(R.id.progressBar_payment);
         payment_method_adapter = new Payment_Method_Adapter(getActivity(), payment_method_models);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         layoutManager.setReverseLayout(false);
