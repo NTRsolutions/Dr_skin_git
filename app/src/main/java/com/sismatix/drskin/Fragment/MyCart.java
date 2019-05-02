@@ -57,6 +57,7 @@ public class MyCart extends Fragment {
     public static Context context = null;
     LinearLayout lv_place_order;
     ProgressBar progressBar_cart;
+    TextView title_cart,tv_total,tv_checkouttt;
     public static String cart_items_count;
     public static String loginflag,subtotal,coupon_code,discount_amount;
     public static String qt, qoute_id_cart, productslist;
@@ -77,6 +78,13 @@ public class MyCart extends Fragment {
         lv_productnotavelable=(LinearLayout) v.findViewById(R.id.lv_productnotavelable);
         lv_Checkout=(LinearLayout) v.findViewById(R.id.lv_Checkout);
         tv_maintotal=(TextView) v.findViewById(R.id.tv_maintotal);
+        title_cart=(TextView) v.findViewById(R.id.title_cart);
+        tv_total=(TextView) v.findViewById(R.id.tv_total);
+        tv_checkouttt=(TextView) v.findViewById(R.id.tv_checkouttt);
+        tv_checkouttt.setTypeface(Home.opensans_bold);
+        title_cart.setTypeface(Home.opensans_bold);
+        tv_maintotal.setTypeface(Home.opensans_bold);
+        tv_total.setTypeface(Home.opensans_bold);
         iv_close=(ImageView) v.findViewById(R.id.iv_close);
         progressBar_cart=(ProgressBar) v.findViewById(R.id.progressBar_cart);
         loginflag = Login_preference.getLogin_flag(getActivity());

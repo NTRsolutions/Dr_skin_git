@@ -42,7 +42,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tv_wishlist_title"
+                            android:id="@+id/tv_myaccount_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -50,8 +50,7 @@
                             android:layout_marginRight="30dp"
                             android:text="MY ACCOUNT"
                             android:textColor="@color/black"
-                            android:textSize="18dp"
-                            android:textStyle="bold" />
+                            android:textSize="18dp" />
 
                     </LinearLayout>
 
@@ -119,14 +118,15 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_titlesinf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SIGN IN OR CREATE AN ACCOUNT"
                             android:textColor="@color/black"
-                            android:textSize="12dp"
-                            android:textStyle="bold" />
+                            android:textSize="12dp"/>
 
                         <TextView
+                            android:id="@+id/tv_textnorml"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -197,6 +197,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tv_singout"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -207,8 +208,7 @@
                                     android:paddingBottom="8dp"
                                     android:text="SIGN OUT"
                                     android:textColor="@color/white"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    android:textSize="14sp" />
 
                             </LinearLayout>
                         </LinearLayout>
@@ -222,13 +222,13 @@
                         android:background="#e1e1e1">
 
                         <TextView
+                            android:id="@+id/tv_prereences"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="0dp"
                             android:text="PREFRENCES"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -294,6 +294,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_orderhistory"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -339,6 +340,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_my_wishlist"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -382,6 +384,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_accountinfo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -417,13 +420,13 @@
                     android:background="#e1e1e1">
 
                     <TextView
+                        android:id="@+id/tv_spourt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="0dp"
                         android:text="SUPPORT"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"/>
 
                 </LinearLayout>
 
@@ -443,6 +446,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_about"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -488,6 +492,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_terms"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -533,6 +538,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_priviry"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -565,6 +571,7 @@
                     android:background="#e1e1e1">
 
                     <TextView
+                        android:id="@+id/tv_gettuch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -576,85 +583,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:id="@+id/lv_insta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
+                    <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="0dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/insta"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Twitter"
-                            android:textColor="@color/black"
-                            android:textSize="16dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="end"
-                            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/ed_text_signin" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="0dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="Instagram"
-                            android:textColor="@color/black"
-                            android:textSize="16dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="end"
-                            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -666,13 +604,13 @@
                     android:background="#e1e1e1">
 
                     <TextView
+                        android:id="@+id/tv_contect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="0dp"
                         android:text="CONTACT US"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"/>
 
                 </LinearLayout>
 
@@ -709,12 +647,12 @@
                                 android:layout_gravity="center"
                                 android:src="@drawable/call" />
                             <TextView
+                                android:id="@+id/tv_phonee"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Phone"
                                 android:layout_marginTop="5dp"
                                 android:textSize="16dp"
-                                android:textStyle="bold"
                                 android:textColor="@color/ed_text_signin" />
                         </LinearLayout>
 
@@ -745,11 +683,11 @@
                                 android:layout_gravity="center"
                                 android:src="@drawable/email" />
                             <TextView
+                                android:id="@+id/tv_emailll"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Email"
                                 android:textSize="16dp"
-                                android:textStyle="bold"
                                 android:layout_marginTop="5dp"
                                 android:textColor="@color/ed_text_signin"
                                 android:gravity="center" />

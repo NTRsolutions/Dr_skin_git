@@ -41,6 +41,8 @@
         <activity android:name=".Activity.Chat_messge" />
         <activity android:name=".Activity.Paymentscreen" />
         <activity android:name=".Activity.Order_summery_activty" />
+        <activity android:name=".Activity.YPlayer"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

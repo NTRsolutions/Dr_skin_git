@@ -54,7 +54,8 @@ public class Shipping extends Fragment implements View.OnClickListener {
     LinearLayout lv_shipping_next, lv_addbutton, lv_addnewaddress, lv_main, lv_Addnew, lv_save,lv_shipping_main;
 
     LinearLayout lv_address, lv_edit_address, tv_remov_coupn;
-    TextView confirm_name, confirm_address, confirm_state, confirm_city, confirm_phone, tv_apply, tv_subtotal, tv_discount, gren_total;
+    TextView confirm_name, confirm_address, shippingtitle, tv_edittt, tv_titleshiping, tv_apply, tv_subtotal, tv_discount, gren_total,tv_voucher
+    ,tv_subtotalss,tv_discounttt,tv_totale,tv_continue_payment;
     EditText Shipping_fullname, shipping_state, shipping_streetname, shipping_Appartment, shipping_PhoneNumber, shipping_postcode, et_voucher;
     Spinner edit_spinner_country_Name;
 
@@ -119,6 +120,17 @@ public class Shipping extends Fragment implements View.OnClickListener {
         Checkout.lv_shipping_selected.setVisibility(View.VISIBLE);
         Checkout.lv_payment_selected.setVisibility(View.INVISIBLE);
         Checkout.lv_confirmation_selected.setVisibility(View.INVISIBLE);
+        shippingtitle.setTypeface(Home.opensans_bold);
+        tv_edittt.setTypeface(Home.opensans_bold);
+        tv_titleshiping.setTypeface(Home.opensans_bold);
+        tv_voucher.setTypeface(Home.opensans_bold);
+        tv_apply.setTypeface(Home.opensans_bold);
+        tv_subtotalss.setTypeface(Home.opensans_bold);
+        tv_discounttt.setTypeface(Home.opensans_bold);
+        tv_discount.setTypeface(Home.opensans_bold);
+        tv_totale.setTypeface(Home.opensans_bold);
+        gren_total.setTypeface(Home.opensans_bold);
+        tv_continue_payment.setTypeface(Home.opensans_bold);
 
         lv_addnewaddress.setOnClickListener(this);
         lv_save.setOnClickListener(this);
@@ -241,6 +253,14 @@ public class Shipping extends Fragment implements View.OnClickListener {
         tv_subtotal = (TextView) v.findViewById(R.id.tv_subtotal);
         tv_discount = (TextView) v.findViewById(R.id.tv_discount);
         gren_total = (TextView) v.findViewById(R.id.gren_total);
+        shippingtitle = (TextView) v.findViewById(R.id.shippingtitle);
+        tv_edittt = (TextView) v.findViewById(R.id.tv_edittt);
+        tv_titleshiping = (TextView) v.findViewById(R.id.tv_titleshiping);
+        tv_voucher = (TextView) v.findViewById(R.id.tv_voucher);
+        tv_subtotalss = (TextView) v.findViewById(R.id.tv_subtotalss);
+        tv_discounttt = (TextView) v.findViewById(R.id.tv_discounttt);
+        tv_totale = (TextView) v.findViewById(R.id.tv_totale);
+        tv_continue_payment = (TextView) v.findViewById(R.id.tv_continue_payment);
 
         Shipping_fullname = (EditText) v.findViewById(R.id.Shipping_fullname);
         shipping_state = (EditText) v.findViewById(R.id.shipping_state);

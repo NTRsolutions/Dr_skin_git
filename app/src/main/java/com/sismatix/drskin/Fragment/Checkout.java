@@ -64,6 +64,10 @@ public class Checkout extends Fragment implements View.OnClickListener {
         lv_confirmation_selected.setVisibility(View.INVISIBLE);
         lv_shipping_selected.setVisibility(View.VISIBLE);
 
+        tv_checkout_title.setTypeface(Home.opensans_bold);
+        tv_shipping.setTypeface(Home.opensans_bold);
+        tv_confirmation.setTypeface(Home.opensans_bold);
+        tv_payment.setTypeface(Home.opensans_bold);
 
 
         /*if (loginflag.equalsIgnoreCase("1") || loginflag == "1") {

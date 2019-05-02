@@ -44,7 +44,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tv_wishlist_title"
+                            android:id="@+id/tv_signup_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/signup"
@@ -185,6 +185,7 @@
                             android:layout_weight="1.2">
 
                             <TextView
+                                android:id="@+id/tv_textshow"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/black"
@@ -212,6 +213,7 @@
                             android:layout_marginTop="20dp"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/tv_privicy"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/black"

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Fragment.Product_Details;
 import com.sismatix.drskin.Model.Product_Grid_Model;
 import com.sismatix.drskin.R;
@@ -46,6 +47,9 @@ public class Product_recycler_adapter extends RecyclerView.Adapter<Product_recyc
         final Product_Grid_Model product_model = models.get(position);
         holder.tv_product_price.setText(product_model.getProduct_price());
         holder.tv_product_name.setText(product_model.getProducr_title());
+        holder.tv_product_price.setTypeface(Home.opensans_regular);
+        holder.tv_product_name.setTypeface(Home.opensans_bold);
+
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.app_logo);
         requestOptions.error(R.drawable.app_logo);

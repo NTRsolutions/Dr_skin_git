@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +57,7 @@ public class Shop extends Fragment implements View.OnClickListener {
     ImageView iv_search;
     LinearLayout lv_productnotavelable;
     String vlaue,name;
+    TextView tv_title;
     public static Button cart_count;
     ProgressBar progressBar;
     LinearLayout lv_productnotfound,l_cartshow;
@@ -78,6 +80,7 @@ public class Shop extends Fragment implements View.OnClickListener {
             Log.e("products_arrayyyy", "" + name);
         }
         Allocatememory(v);
+        tv_title.setTypeface(Home.opensans_bold);
        Log.e("cart_total",""+Login_preference.getCart_item_count(getActivity()));
        String cart_countt=Login_preference.getCart_item_count(getActivity());
        if (cart_countt.equalsIgnoreCase("")|| cart_countt == "null"){
@@ -106,6 +109,7 @@ public class Shop extends Fragment implements View.OnClickListener {
         progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
         cart_count=(Button) v.findViewById(R.id.cart_count);
         l_cartshow=(LinearLayout) v.findViewById(R.id.l_cartshow);
+        tv_title=(TextView) v.findViewById(R.id.tv_title);
         lv_productnotavelable=(LinearLayout) v.findViewById(R.id.lv_productnotavelable);
     }
 

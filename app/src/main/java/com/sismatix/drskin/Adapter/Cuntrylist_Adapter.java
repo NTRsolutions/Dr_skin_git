@@ -49,6 +49,7 @@ public class Cuntrylist_Adapter extends RecyclerView.Adapter<Cuntrylist_Adapter.
             final Cuntrylist_model cuntrylist_model = model.get(position);
      //   holder.tv_category_name.setTypeface(Home.roboto_bold);
         holder.tv_name.setText(cuntrylist_model.getName());
+        holder.tv_name.setTypeface(Home.opensans_bold);
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.app_logo);
         requestOptions.error(R.drawable.app_logo);

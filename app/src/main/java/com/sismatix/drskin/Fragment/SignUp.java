@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sismatix.drskin.Activity.Bottom_navigation;
@@ -38,6 +39,7 @@ public class SignUp extends Fragment implements View.OnClickListener {
 
     Toolbar toolbar_Signup;
     LinearLayout lv_singupmain;
+    TextView tv_textshow,tv_privicy,tv_signup_title;
     Button btn_signup,btn_alredyaccount;
     EditText signup_fullname, signup_email, etPassword;
    // TextInputLayout etPasswordLayout;
@@ -60,6 +62,15 @@ public class SignUp extends Fragment implements View.OnClickListener {
         ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
         btn_signup.setOnClickListener(this);
         btn_alredyaccount.setOnClickListener(this);
+        signup_fullname.setTypeface(Home.opensans_regular);
+        signup_email.setTypeface(Home.opensans_regular);
+        etPassword.setTypeface(Home.opensans_regular);
+        tv_textshow.setTypeface(Home.opensans_bold);
+        tv_privicy.setTypeface(Home.opensans_regular);
+        btn_signup.setTypeface(Home.opensans_bold);
+        btn_alredyaccount.setTypeface(Home.opensans_bold);
+        tv_signup_title.setTypeface(Home.opensans_bold);
+
         return v;
     }
     private void AllocateMemory(View v) {
@@ -70,6 +81,9 @@ public class SignUp extends Fragment implements View.OnClickListener {
         signup_fullname=(EditText)v.findViewById(R.id.sign_fullname);
         signup_email=(EditText)v.findViewById(R.id.sign_email);
         etPassword=(EditText)v.findViewById(R.id.etPassword);
+        tv_textshow=(TextView) v.findViewById(R.id.tv_textshow);
+        tv_signup_title=(TextView) v.findViewById(R.id.tv_signup_title);
+        tv_privicy=(TextView) v.findViewById(R.id.tv_privicy);
        // etPasswordLayout=(TextInputLayout) v.findViewById(R.id.etPasswordLayout);
 
 

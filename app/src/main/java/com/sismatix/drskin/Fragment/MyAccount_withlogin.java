@@ -24,8 +24,9 @@ import com.sismatix.drskin.R;
 
 
 public class MyAccount_withlogin extends Fragment implements View.OnClickListener {
-    LinearLayout lv_signout,lv_mywwishlist,lv_accountinfo,lv_aboutus,lv_tac,lv_privacypolicy,lv_without_login,lv_withlogin,lv_orderhistory, lv_call, lv_email;
-    TextView tv_email,tv_username;
+    LinearLayout lv_signout,lv_mywwishlist,lv_accountinfo,lv_aboutus,lv_tac,lv_privacypolicy,lv_without_login,lv_withlogin,lv_orderhistory, lv_call, lv_email,lv_insta;
+    TextView tv_email,tv_username,tv_myaccount_title,tv_titlesinf,tv_textnorml,tv_spourt,tv_about,tv_terms,tv_priviry
+    ,tv_gettuch,tv_contect,tv_phonee,tv_emailll,tv_singout,tv_prereences,tv_orderhistory,tv_my_wishlist,tv_accountinfo;
     android.support.v7.widget.Toolbar toolbar_myaccount;
     String loginflagmain;
     public MyAccount_withlogin() {
@@ -61,8 +62,29 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         lv_without_login.setOnClickListener(this);
         lv_call.setOnClickListener(this);
         lv_email.setOnClickListener(this);
+        lv_insta.setOnClickListener(this);
         tv_email.setText(Login_preference.getemail(getActivity()));
+        tv_email.setTypeface(Home.opensans_regular);
         tv_username.setText(Login_preference.getfullname(getActivity()));
+        tv_username.setTypeface(Home.opensans_bold);
+        tv_myaccount_title.setTypeface(Home.opensans_bold);
+        tv_titlesinf.setTypeface(Home.opensans_bold);
+        tv_textnorml.setTypeface(Home.opensans_regular);
+        tv_spourt.setTypeface(Home.opensans_bold);
+        tv_about.setTypeface(Home.opensans_regular);
+        tv_terms.setTypeface(Home.opensans_regular);
+        tv_priviry.setTypeface(Home.opensans_regular);
+        tv_gettuch.setTypeface(Home.opensans_bold);
+        tv_contect.setTypeface(Home.opensans_bold);
+        tv_phonee.setTypeface(Home.opensans_regular);
+        tv_emailll.setTypeface(Home.opensans_regular);
+        tv_singout.setTypeface(Home.opensans_bold);
+        tv_prereences.setTypeface(Home.opensans_bold);
+        tv_orderhistory.setTypeface(Home.opensans_regular);
+        tv_my_wishlist.setTypeface(Home.opensans_regular);
+        tv_accountinfo.setTypeface(Home.opensans_regular);
+
+
         return v;
     }
 
@@ -79,8 +101,25 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         lv_aboutus=(LinearLayout)v.findViewById(R.id.lv_aboutus);
         lv_call=(LinearLayout)v.findViewById(R.id.lv_call);
         lv_email=(LinearLayout)v.findViewById(R.id.lv_email);
+        lv_insta=(LinearLayout)v.findViewById(R.id.lv_insta);
         tv_email=(TextView) v.findViewById(R.id.tv_email);
         tv_username=(TextView) v.findViewById(R.id.tv_username);
+        tv_myaccount_title=(TextView) v.findViewById(R.id.tv_myaccount_title);
+        tv_titlesinf=(TextView) v.findViewById(R.id.tv_titlesinf);
+        tv_textnorml=(TextView) v.findViewById(R.id.tv_textnorml);
+        tv_spourt=(TextView) v.findViewById(R.id.tv_spourt);
+        tv_about=(TextView) v.findViewById(R.id.tv_about);
+        tv_terms=(TextView) v.findViewById(R.id.tv_terms);
+        tv_priviry=(TextView) v.findViewById(R.id.tv_priviry);
+        tv_gettuch=(TextView) v.findViewById(R.id.tv_gettuch);
+        tv_contect=(TextView) v.findViewById(R.id.tv_contect);
+        tv_phonee=(TextView) v.findViewById(R.id.tv_phonee);
+        tv_emailll=(TextView) v.findViewById(R.id.tv_emailll);
+        tv_singout=(TextView) v.findViewById(R.id.tv_singout);
+        tv_prereences=(TextView) v.findViewById(R.id.tv_prereences);
+        tv_orderhistory=(TextView) v.findViewById(R.id.tv_orderhistory);
+        tv_accountinfo=(TextView) v.findViewById(R.id.tv_accountinfo);
+        tv_my_wishlist=(TextView) v.findViewById(R.id.tv_my_wishlist);
         toolbar_myaccount= (android.support.v7.widget.Toolbar) v.findViewById(R.id.toolbar_myaccount);
 
     }
@@ -110,7 +149,10 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
             Intent i = new Intent(Intent.ACTION_DIAL);
             i.setData(Uri.parse("tel:" + 923145689));
             getActivity().startActivity(i);
-        } else if (view == lv_email) {
+        } else if (view == lv_insta) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/dr.gloosy/"));
+            startActivity(browserIntent);
+        }else if (view == lv_email) {
             Intent it = new Intent(Intent.ACTION_SEND);
             it.putExtra(Intent.EXTRA_EMAIL, new String[]{"sales@doctorskin.net"});
             it.putExtra(Intent.EXTRA_SUBJECT,"");

@@ -62,8 +62,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/checkout"
                             android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textSize="18sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -208,7 +207,6 @@
                         android:text="@string/shipping"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold"
                         android:visibility="visible" />
 
                 </LinearLayout>
@@ -231,7 +229,6 @@
                         android:text="@string/payment"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold"
                         android:visibility="visible" />
 
                 </LinearLayout>
@@ -254,7 +251,6 @@
                         android:text="CONFIRMATION"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:textStyle="bold"
                         android:visibility="visible" />
 
                 </LinearLayout>

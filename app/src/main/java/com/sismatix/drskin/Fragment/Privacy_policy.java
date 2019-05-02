@@ -17,7 +17,7 @@ import com.sismatix.drskin.R;
 
 public class Privacy_policy extends Fragment {
     Toolbar toolbar_privacypolicy;
-    TextView tv_privacy;
+    TextView tv_privacy,tv_privy_title;
     public Privacy_policy() {
         // Required empty public constructor
     }
@@ -29,6 +29,7 @@ public class Privacy_policy extends Fragment {
         View v=inflater.inflate(R.layout.fragment_privacy_policy, container, false);
         Allocationmemory(v);
         setHasOptionsMenu(true);
+        tv_privy_title.setTypeface(Home.opensans_bold);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_privacypolicy);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
@@ -40,6 +41,7 @@ public class Privacy_policy extends Fragment {
     private void Allocationmemory(View v) {
         toolbar_privacypolicy=(Toolbar)v.findViewById(R.id.toolbar_privacypolicy);
         tv_privacy=(TextView) v.findViewById(R.id.tv_privacy);
+        tv_privy_title=(TextView) v.findViewById(R.id.tv_privy_title);
     }
 
     @Override

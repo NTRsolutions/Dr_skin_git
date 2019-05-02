@@ -45,7 +45,7 @@ public class SignIn extends Fragment implements View.OnClickListener {
     ProgressBar progressBar;
     Bundle bundle;
     TextInputEditText etPassword;
-    TextView tv_forgotpassword_signin;
+    TextView tv_forgotpassword_signin,tv_signin_title;
     String tot_cart,subtot,screen_type;
 
     public SignIn() {
@@ -77,6 +77,13 @@ public class SignIn extends Fragment implements View.OnClickListener {
                         0, 0, R.anim.fade_out).replace(R.id.rootLayout, myFragment).addToBackStack(null).commit();
             }
         });
+
+        tv_signin_title.setTypeface(Home.opensans_bold);
+        et_email_signin.setTypeface(Home.opensans_regular);
+        etPassword.setTypeface(Home.opensans_regular);
+        btn_signin.setTypeface(Home.opensans_bold);
+        tv_forgotpassword_signin.setTypeface(Home.opensans_bold);
+        btn_createaccount_signin.setTypeface(Home.opensans_bold);
         return v;
     }
 
@@ -200,6 +207,7 @@ public class SignIn extends Fragment implements View.OnClickListener {
         tv_forgotpassword_signin = (TextView) v.findViewById(R.id.tv_forgotpassword_signin);
         progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         etPassword=(TextInputEditText)v.findViewById(R.id.etPassword);
+        tv_signin_title=(TextView) v.findViewById(R.id.tv_signin_title);
 
     }
 

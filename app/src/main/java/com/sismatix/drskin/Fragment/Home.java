@@ -1,6 +1,7 @@
 package com.sismatix.drskin.Fragment;
 
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,7 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -25,10 +28,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sismatix.drskin.Activity.Chat_messge;
+import com.sismatix.drskin.Activity.CirclePagerIndicatorDecoration;
 import com.sismatix.drskin.Adapter.Cuntrylist_Adapter;
 //import com.sismatix.drskin.Adapter.SlidingImage_Adapter;
+import com.sismatix.drskin.Adapter.SlidingVideoAdapterMain;
 import com.sismatix.drskin.Model.Cuntrylist_model;
 import com.sismatix.drskin.Model.sliderimage_model;
+import com.sismatix.drskin.Model.slidervideo_model;
 import com.sismatix.drskin.Preference.CheckNetwork;
 import com.sismatix.drskin.R;
 import com.sismatix.drskin.Retrofit.ApiClient;
@@ -59,6 +66,7 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
     private List<Cuntrylist_model> cuntrylist_models = new ArrayList<Cuntrylist_model>();
     private List<sliderimage_model> sliderimage_models = new ArrayList<sliderimage_model>();
     Timer timer;
+    TextView title_tv;
     final long DELAY_MS = 800, PERIOD_MS = 4000;
 
     int currentPage = 0;
@@ -67,6 +75,13 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
     private String URL_HOMEPAGE;
     private CircleIndicator indicator;
     ProgressBar progressBar_home;
+    LinearLayout lv_chat_doctor,lv_ask_doctor;
+
+    public static AssetManager am;
+    public static Typeface  opensans_bold, opensans_light, opensans_regular;
+    RecyclerView recycler_prem_videos;
+    private List<slidervideo_model> slidervideo_models = new ArrayList<slidervideo_model>();
+    SlidingVideoAdapterMain slidingVideoAdapterMain;
 
     public Home() {
 
@@ -77,18 +92,30 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
                              Bundle savedInstanceState) {
 // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+
+        setFontStyle();
         recycler_cuntrylist = (RecyclerView) v.findViewById(R.id.recycler_cuntrylist);
-        mPager = (ViewPager) v.findViewById(R.id.pager);
-        indicator = (CircleIndicator) v.findViewById(R.id.indicator);
+        recycler_prem_videos = (RecyclerView) v.findViewById(R.id.recycler_prem_videos);
+
+//slideingVideoAdapter = new SlidingImage_Adapter(getContext(),slidervideo_models);
+
+        slidingVideoAdapterMain = new SlidingVideoAdapterMain(getActivity(), slidervideo_models);
+        RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        recycler_prem_videos.setLayoutManager(mLayoutManager1);
+        recycler_prem_videos.addItemDecoration(new CirclePagerIndicatorDecoration());
+        recycler_prem_videos.setAdapter(slidingVideoAdapterMain);
+        Log.e("sizee", "" + slidervideo_models.size());
+
         progressBar_home = (ProgressBar) v.findViewById(R.id.progressBar_home);
+        lv_chat_doctor = (LinearLayout)v.findViewById(R.id.lv_chat_doctor);
+        lv_ask_doctor = (LinearLayout)v.findViewById(R.id.lv_ask_doctor);
         cuntrylist_adapter = new Cuntrylist_Adapter(getActivity(), cuntrylist_models);
         recycler_cuntrylist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         recycler_cuntrylist.setItemAnimator(new DefaultItemAnimator());
-/*LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true);
-layoutManager.setReverseLayout(false);
-recycler_cuntrylist.setLayoutManager(layoutManager);*/
+
         recycler_cuntrylist.setAdapter(cuntrylist_adapter);
-        URL_HOMEPAGE = "http://travel.demoproject.info/api/get_homepage_details.php";
+       // URL_HOMEPAGE_VIDEOS = "http://doctorskin.net/customapi/AppHomeVideo.php";
+
         if (CheckNetwork.isNetworkAvailable(getActivity())) {
             CALL_PRODUCT_CATEGORY_API();
         } else {
@@ -96,12 +123,47 @@ recycler_cuntrylist.setLayoutManager(layoutManager);*/
         }
         callHomePageApi();
 
-        mPager.addOnPageChangeListener(this);
-        startAutoScrollViewPager();
+//startAutoScrollViewPager();
 
+        lv_ask_doctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new Field_qurey());
+            }
+        });
+
+        lv_chat_doctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(),Chat_messge.class);
+                startActivity(intent);
+            }
+        });
         return v;
     }
 
+    private void loadFragment(Fragment fragment) {
+        Log.e("clickone", "");
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.rootLayout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+    private void setFontStyle() {
+
+        //holder.txt_pack_title.setTypeface(Home.typeface);
+        //holder.txt_pack_title.setText(package_model.getPackage_title());
+
+        am = getActivity().getAssets();
+        opensans_bold = Typeface.createFromAsset(am,
+                String.format(Locale.getDefault(), "OpenSans-Bold.ttf"));
+        opensans_light = Typeface.createFromAsset(am,
+                String.format(Locale.getDefault(), "OpenSans-Light.ttf"));
+        opensans_regular = Typeface.createFromAsset(am,
+                String.format(Locale.getDefault(), "OpenSans-Regular.ttf"));
+
+    }
     private void CALL_PRODUCT_CATEGORY_API() {
         progressBar_home.setVisibility(View.VISIBLE);
 
@@ -156,75 +218,56 @@ recycler_cuntrylist.setLayoutManager(layoutManager);*/
     }
 
     private void callHomePageApi() {
-        sliderimage_models.clear();
-//progressBar.setVisibility(View.VISIBLE);
 
-        stringRequest = new StringRequest(Request.Method.POST, URL_HOMEPAGE,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        slidervideo_models.clear();
+        ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
+        Call<ResponseBody> video = api.getVideos();
 
-                        Log.e("Response_homePage", "" + response);
-                        Log.e("URL_HOMEPAGE", "" + URL_HOMEPAGE);
+        video.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                Log.e("response", "" + response.body().toString());
+                slidervideo_models.clear();
+                JSONObject object = null;
+                try {
+//getting the whole json object from the response
+                    object = new JSONObject(response.body().string());
+                    Log.e("arrresponse", "" + response);
+
+                    String status = object.getString("status");
+                    Log.e("status_vids",""+status);
+
+                    String content = object.getString("content");
+                    Log.e("content",""+content);
+
+                    JSONArray cont_arr = new JSONArray(content);
+                    Log.e("cont_arr",""+cont_arr);
+                    slidervideo_models.clear();
+                    for (int i = 0; i < cont_arr.length(); i++) {
+
                         try {
+                            slidervideo_model schedule = new slidervideo_model(cont_arr.getString(i));
+                            slidervideo_models.add(schedule);
+                            Log.e("schedule",""+slidervideo_models.size());
 
-// progressBar.setVisibility(View.GONE);
-
-                            JSONObject jsonObject = new JSONObject(response);
-                            String status = jsonObject.getString("status");
-                            Log.e("status_home", "" + status);
-                            String message = jsonObject.getString("message");
-
-                            if (status.equals("Success") == true) {
-                                Log.e("message", "" + message);
-
-                                JSONObject data_obj = jsonObject.getJSONObject("data");
-                                Log.e("data_obj", "" + data_obj);
-
-                                JSONArray banners_arr = data_obj.getJSONArray("banners");
-                                Log.e("banners", "" + banners_arr);
-                                if (banners_arr != null && banners_arr.isNull(0) != true) {
-                                    for (int i = 0; i < banners_arr.length(); i++) {
-                                        try {
-                                            JSONObject object = banners_arr.getJSONObject(i);
-                                            //sliderimage_models.add(new sliderimage_model(object.getString("location_id"), object.getString("location_image")));
-                                            mPager.setAdapter(new SlidingImage_Adapter(getActivity(), sliderimage_models));
-                                        } catch (Exception e) {
-                                            Log.e("Exception", "" + e);
-                                        } finally {
-                                        }
-                                    }
-                                    if (banners_arr.length() > 1) {
-                                        indicator.setViewPager(mPager);
-                                    }
-                                } else {
-//Toast.makeText(getActivity(), "array_null", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        } catch (JSONException e) {
-
+                        } catch (Exception e) {
+                            Log.e("Exception", "" + e);
+                        }finally {
+                            slidingVideoAdapterMain.notifyItemChanged(i);
                         }
                     }
+                } catch (Exception e) {
+                    Log.e("", "" + e);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getContext(), "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-// Toast.makeText(getActivity(), "not get Response"+error, Toast.LENGTH_SHORT).show();
-                        Log.e("error", "" + error);
-                    }
-
-                });
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                30000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        requestQueue.add(stringRequest);
     }
-
     private void startAutoScrollViewPager() {
 
         final Handler handler = new Handler();
@@ -253,7 +296,7 @@ recycler_cuntrylist.setLayoutManager(layoutManager);*/
     }
 
     @Override
-    public void onPageSelected(int i) {
+        public void onPageSelected(int i) {
 
     }
 

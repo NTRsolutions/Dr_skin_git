@@ -50,12 +50,12 @@
                             android:padding="10dp">
 
                             <TextView
+                                android:id="@+id/shippingtitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
                                 android:text="SHIPPING ADDRESS"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -112,6 +112,7 @@
                                     android:orientation="vertical">
 
                                     <TextView
+                                        android:id="@+id/tv_edittt"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
@@ -190,6 +191,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_titleshiping"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
@@ -235,6 +237,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_voucher"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="start"
@@ -317,6 +320,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tv_subtotalss"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="SUBTOTAL"
@@ -363,6 +367,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tv_discounttt"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="DISCOUNT"
@@ -421,6 +426,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_totale"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TOTAL"

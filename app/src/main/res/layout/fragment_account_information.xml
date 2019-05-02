@@ -43,7 +43,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tv_wishlist_title"
+                            android:id="@+id/tv_accountinfo_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_username"
@@ -115,6 +115,16 @@
                             android:textColor="@color/black"
                             android:textSize="16dp"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_email_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="TEST@GMAIL.COM"
+                            android:textColor="@color/black"
+                            android:textSize="14dp" />
 
 
                     </LinearLayout>
@@ -127,13 +137,13 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_titleinfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="0dp"
                             android:text="ACCOUNT INFO"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -152,12 +162,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_full"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Full name :"
                                 android:textColor="@color/black"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="16dp"/>
 
                             <TextView
                                 android:id="@+id/tv_fullname"
@@ -236,12 +246,12 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_emailll"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Email :"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:textStyle="bold" />
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/tv_email"
@@ -260,12 +270,12 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Phone number :"
                             android:textColor="@color/black"
-                            android:textSize="16dp"
-                            android:textStyle="bold" />
+                            android:textSize="16dp" />
 
                         <TextView
                             android:id="@+id/tv_number"
@@ -296,13 +306,13 @@
                         android:padding="10dp">
 
                         <TextView
+                            android:id="@+id/tv_myadressess"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="0dp"
                             android:text="MY ADRESSESS"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -322,12 +332,12 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tv_kwaitaddree"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Kuwait Address"
                                 android:textColor="@color/black"
-                                android:textSize="16dp"
-                                android:textStyle="bold" />
+                                android:textSize="16dp" />
 
                         </LinearLayout>
 

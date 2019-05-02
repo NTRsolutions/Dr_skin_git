@@ -60,12 +60,12 @@ class SlidingImage_Adapter extends PagerAdapter {
 
 
         image = (ImageView) view.findViewById(R.id.imageview);
-        progressBar_slider_home = (ProgressBar)view.findViewById(R.id.progress_location_slider);
+       // progressBar_slider_home = (ProgressBar)view.findViewById(R.id.progress_location_slider);
 
         //Glide.with(context).load(sm.getLocation_image()).into(image);
 
         image.setVisibility(View.VISIBLE);
-        progressBar_slider_home.setVisibility(View.VISIBLE);
+       // progressBar_slider_home.setVisibility(View.VISIBLE);
 
        // Glide.with(context).load(sliderimage_models.get(position).getLocation_image()).into(image);
 /*

@@ -45,6 +45,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.gdacciaro:iosdialog:1.0.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.libizo:customedittext:1.0.4'

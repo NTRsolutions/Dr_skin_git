@@ -55,7 +55,8 @@ import static com.sismatix.drskin.Fragment.MyCart.qt;
  */
 public class Confirm_Order extends Fragment  {
 
-    TextView confirmpay_add, tv_cart_edit_confirm,grand_totall,shipping_price,tv_discount;
+    TextView confirmpay_add, tv_cart_edit_confirm,grand_totall,shipping_price,tv_discount,
+            tv_shipping_title,tv_conf_order,tv_shppingfee,discounttt,tv_continue_payment;
     RecyclerView recyclerview_confirmation;
     private List<Cart_Model> cartList = new ArrayList<Cart_Model>();
     private Confirmation_cart_Adapter confirmation_cart_adapter;
@@ -91,8 +92,14 @@ public class Confirm_Order extends Fragment  {
         Checkout.iv_shipping_done.setVisibility(View.VISIBLE);
         Checkout.iv_confirmation_done.setVisibility(View.INVISIBLE);
 
-
-
+        tv_shipping_title.setTypeface(Home.opensans_bold);
+        tv_discount.setTypeface(Home.opensans_bold);
+        tv_conf_order.setTypeface(Home.opensans_bold);
+        tv_cart_edit_confirm.setTypeface(Home.opensans_bold);
+        tv_shppingfee.setTypeface(Home.opensans_bold);
+        discounttt.setTypeface(Home.opensans_bold);
+        shipping_price.setTypeface(Home.opensans_bold);
+        tv_continue_payment.setTypeface(Home.opensans_bold);
         Bundle bundle = this.getArguments();
 
         if (bundle != null) {
@@ -447,8 +454,13 @@ public class Confirm_Order extends Fragment  {
         grand_totall = (TextView) v.findViewById(R.id.grand_totall);
         shipping_price = (TextView) v.findViewById(R.id.shipping_price);
         tv_discount = (TextView) v.findViewById(R.id.tv_discount);
+        tv_shipping_title = (TextView) v.findViewById(R.id.tv_shipping_title);
+        tv_conf_order = (TextView) v.findViewById(R.id.tv_conf_order);
         recyclerview_confirmation = (RecyclerView) v.findViewById(R.id.recyclerview_confirmation);
         tv_cart_edit_confirm = (TextView) v.findViewById(R.id.tv_cart_edit_confirm);
+        discounttt = (TextView) v.findViewById(R.id.discounttt);
+        tv_shppingfee = (TextView) v.findViewById(R.id.tv_shppingfee);
+        tv_continue_payment = (TextView) v.findViewById(R.id.tv_continue_payment);
         iv_left = (ImageView) v.findViewById(R.id.iv_left);
         lv_ordernow = (LinearLayout) v.findViewById(R.id.lv_ordernow);
         progressBar_confom_cart = (ProgressBar) v.findViewById(R.id.progressBar_confom_cart);

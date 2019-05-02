@@ -43,6 +43,7 @@ public class Payment_Method_Adapter  extends RecyclerView.Adapter<Payment_Method
         final Payment_Method_Model payment_model = model.get(position);
 
         holder.rad_payment.setText(payment_model.getLabel());
+        holder.rad_payment.setTypeface(Home.opensans_bold);
 
         holder.rad_payment.setChecked(lastSelectedPosition == position);
         holder.rad_payment.setOnClickListener(new View.OnClickListener() {

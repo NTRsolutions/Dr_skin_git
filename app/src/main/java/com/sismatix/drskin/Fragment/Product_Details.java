@@ -82,7 +82,7 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
     LinearLayout lv_iteamdetails_click, l_cartview, lv_call, lv_email;
 
     TextView tv_product_name, tv_product_price, tv_short_description, tv_long_descriptionn, tv_main_title, tv_descriptiontitle,
-            tv_id_addtocart, tv_sku;
+            tv_id_addtocart, tv_sku,tv_title_contt,tv_phone,tv_email,tv_addtocart;
     ImageView iv_item_desc, iv_show_more;
 
     String proddd_id, loginflag, iswhishlisted, prod_name;
@@ -183,13 +183,26 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
         lv_email = (LinearLayout) v.findViewById(R.id.lv_email);
 
         tv_product_name = (TextView) v.findViewById(R.id.tv_product_namee);
+        tv_product_name.setTypeface(Home.opensans_bold);
         tv_product_price = (TextView) v.findViewById(R.id.tv_product_pricee);
+        tv_product_price.setTypeface(Home.opensans_regular);
         tv_short_description = (TextView) v.findViewById(R.id.tv_short_descriptionn);
         tv_long_descriptionn = (TextView) v.findViewById(R.id.tv_long_descriptionn);
+        tv_long_descriptionn.setTypeface(Home.opensans_regular);
+        tv_short_description.setTypeface(Home.opensans_regular);
         tv_product_title = (TextView) v.findViewById(R.id.tv_product_title);
         tv_sku = (TextView) v.findViewById(R.id.tv_sku);
+        tv_title_contt = (TextView) v.findViewById(R.id.tv_product_cont);
+        tv_phone = (TextView) v.findViewById(R.id.tv_phone);
+        tv_email = (TextView) v.findViewById(R.id.tv_email);
+        tv_addtocart = (TextView) v.findViewById(R.id.tv_addtocart);
+        tv_title_contt.setTypeface(Home.opensans_bold);
+        tv_phone.setTypeface(Home.opensans_regular);
+        tv_email.setTypeface(Home.opensans_regular);
+        tv_sku.setTypeface(Home.opensans_regular);
 
         tv_descriptiontitle = (TextView) v.findViewById(R.id.tv_descriptiontitle);
+        tv_descriptiontitle.setTypeface(Home.opensans_bold);
         tv_cart_quantity_total = (TextView) v.findViewById(R.id.tv_cart_quantity_total);
         cart_count = (Button) v.findViewById(R.id.cart_count);
 

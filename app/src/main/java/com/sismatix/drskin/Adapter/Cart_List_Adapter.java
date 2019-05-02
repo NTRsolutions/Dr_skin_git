@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.sismatix.drskin.Activity.Bottom_navigation;
+import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Fragment.MyCart;
 import com.sismatix.drskin.Fragment.Product_Details;
 import com.sismatix.drskin.Fragment.SignIn;
@@ -79,7 +80,11 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
         Bottom_navigation.Check_String_NULL_Value(holder.tv_productprice, cart_model.getProduct_price());
         Bottom_navigation.Check_String_NULL_Value(holder.tv_product_desc, cart_model.getProduct_description());
         Bottom_navigation.Check_String_NULL_Value(holder.tv_cart_quantity_total, cart_model.getProduct_qty());
-
+        holder.tv_productname.setTypeface(Home.opensans_bold);
+        holder.iv_skuu.setTypeface(Home.opensans_bold);
+        holder.tv_product_desc.setTypeface(Home.opensans_regular);
+        holder.wishlisttitle.setTypeface(Home.opensans_bold);
+        holder.tv_productprice.setTypeface(Home.opensans_bold);
         //  holder.tv_cart_product_title.setText(cart_model.getProduct_name());
         //holder.tv_product_price_total.setText(cart_model.getProduct_price());
         //holder.tv_cart_product_description.setText(cart_model.getProduct_description());
@@ -158,6 +163,7 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
                 itemid_cart = cart_model.getItemid();
                 quoteid_cart = Login_preference.getquote_id(context);
                 Log.e("result",""+Result);
+                holder.tv_cart_quantity_total.setText(String.valueOf(Result));
                 callAppUpdateCart(Result, itemid_cart, quoteid_cart, view, holder);
             }
 
@@ -175,10 +181,12 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
                     if (Result == 0) {
                         Result = 1;
                         Log.e("result",""+Result);
+                        holder.tv_cart_quantity_total.setText(String.valueOf(Result));
                         callAppUpdateCart(Result, itemid_cart, quoteid_cart, view, holder);
                         // product_total = product_total - current_price;
                     } else {
                         Log.e("result",""+Result);
+                        holder.tv_cart_quantity_total.setText(String.valueOf(Result));
                         callAppUpdateCart(Result, itemid_cart, quoteid_cart, view, holder);
                     }
                 } else {
@@ -269,7 +277,7 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
     }
 
     private void callAppUpdateCart(final int Resultt, String itemid_carttt, String quoteid_carttt, final View view, final MyViewHolder holder) {
-        holder.cart_count_pb.setVisibility(View.VISIBLE);
+        //holder.cart_count_pb.setVisibility(View.VISIBLE);
 
         ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> appupdate = api.appUpdatecart(quoteid_carttt, String.valueOf(Resultt), itemid_carttt);
@@ -280,13 +288,13 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
 
                 JSONObject jsonObject = null;
                 try {
-                    holder.cart_count_pb.setVisibility(View.GONE);
+                  //  holder.cart_count_pb.setVisibility(View.GONE);
                     jsonObject = new JSONObject(response.body().string());
                     String status = jsonObject.getString("status");
                     Log.e("status_prepare_cart", "" + status);
                     Log.e("jsonshow", "" + jsonObject);
                     if (status.equalsIgnoreCase("success")) {
-                        holder.tv_cart_quantity_total.setText(String.valueOf(Resultt));
+
                         holder.iv_cart_quantity_increase.setEnabled(true);
                         holder.iv_cart_quantity_decrease.setEnabled(true);
 
@@ -409,7 +417,7 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
         ProgressBar cart_count_pb;
 
         ImageView iv_product,iv_add_wish,iv_add_wish1,cart_close,iv_cart_quantity_increase,iv_cart_quantity_decrease;
-        TextView tv_productname,tv_product_desc,tv_productprice,tv_cart_quantity_total;
+        TextView tv_productname,tv_product_desc,tv_productprice,tv_cart_quantity_total,iv_skuu,wishlisttitle;
 
         public MyViewHolder(View view) {
             super(view);
@@ -426,6 +434,8 @@ public class Cart_List_Adapter extends RecyclerView.Adapter<Cart_List_Adapter.My
             tv_product_desc = (TextView) view.findViewById(R.id.tv_product_desc);
             tv_productprice = (TextView) view.findViewById(R.id.tv_productprice);
             tv_cart_quantity_total = (TextView) view.findViewById(R.id.tv_cart_quantity_total);
+            iv_skuu = (TextView) view.findViewById(R.id.iv_skuu);
+            wishlisttitle = (TextView) view.findViewById(R.id.wishlisttitle);
         }
     }
 }

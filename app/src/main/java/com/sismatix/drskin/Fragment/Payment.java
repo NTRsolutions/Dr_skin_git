@@ -42,7 +42,7 @@ import static com.sismatix.drskin.Adapter.Payment_Method_Adapter.paymentcode_ada
 public class Payment extends Fragment {
 
     LinearLayout lv_nextt, lv_left, lv_riht;
-    TextView gren_total;
+    TextView gren_total,tv_paymentopetion,tv_totlee,tv_continue_payment;
     RecyclerView payment_method_recyclerview;
     Payment_Method_Adapter payment_method_adapter;
     private List<Payment_Method_Model> payment_method_models = new ArrayList<Payment_Method_Model>();
@@ -82,6 +82,10 @@ public class Payment extends Fragment {
 
         }
         gren_total.setText(grand_tot);
+        tv_paymentopetion.setTypeface(Home.opensans_bold);
+        tv_totlee.setTypeface(Home.opensans_bold);
+        gren_total.setTypeface(Home.opensans_bold);
+        tv_continue_payment.setTypeface(Home.opensans_bold);
         lv_nextt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,6 +210,9 @@ public class Payment extends Fragment {
     private void AllocateMemory(View v) {
         payment_method_recyclerview = (RecyclerView) v.findViewById(R.id.payment_method_recyclerview);
         gren_total = (TextView) v.findViewById(R.id.gren_total);
+        tv_paymentopetion = (TextView) v.findViewById(R.id.tv_paymentopetion);
+        tv_totlee = (TextView) v.findViewById(R.id.tv_totlee);
+        tv_continue_payment = (TextView) v.findViewById(R.id.tv_continue_payment);
         //   lv_payment_next = (LinearLayout)v.findViewById(R.id.lv_payment_next);
         lv_left = (LinearLayout) v.findViewById(R.id.lv_left);
         lv_nextt = (LinearLayout) v.findViewById(R.id.lv_nextt);

@@ -44,7 +44,8 @@ import retrofit2.Response;
  */
 public class Account_information extends Fragment implements View.OnClickListener {
     Toolbar toolbar_accountinfo;
-    TextView tv_username, tv_fullname, tv_email, tv_address, tv_number;
+    TextView tv_username, tv_fullname, tv_email, tv_address, tv_number,tv_email_main
+            ,tv_accountinfo_title,tv_titleinfo,tv_full,tv_emailll,tv_phone,tv_myadressess,tv_kwaitaddree;
     LinearLayout lv_acc_main,lv_edit_addresssss,lv_myaccount_main;
     LinearLayout lv_edit_account_info,lv_edit_add,lv_savee;
     EditText edt_fullname, edt_ph_no;
@@ -78,6 +79,7 @@ public class Account_information extends Fragment implements View.OnClickListene
         tv_username.setText(Login_preference.getfullname(getActivity()));
         tv_fullname.setText(Login_preference.getfullname(getActivity()));
         tv_email.setText(Login_preference.getemail(getActivity()));
+        tv_email_main.setText(Login_preference.getemail(getActivity()));
         tv_address.setText(MyAddress_Preference.getAppartment(getActivity()) + "" + MyAddress_Preference.getStreetAddress(getActivity()) +
                 MyAddress_Preference.getCity(getActivity()) + "" + MyAddress_Preference.getCountryId(getActivity()) + "" + MyAddress_Preference.getZipcode(getActivity()) + "" +
                 MyAddress_Preference.getPhoneNumber(getActivity()));
@@ -86,6 +88,19 @@ public class Account_information extends Fragment implements View.OnClickListene
         lv_edit_account_info.setOnClickListener(this);
         lv_edit_add.setOnClickListener(this);
         lv_savee.setOnClickListener(this);
+        tv_accountinfo_title.setTypeface(Home.opensans_bold);
+        tv_username.setTypeface(Home.opensans_bold);
+        tv_email_main.setTypeface(Home.opensans_regular);
+        tv_fullname.setTypeface(Home.opensans_regular);
+        tv_email.setTypeface(Home.opensans_regular);
+        tv_number.setTypeface(Home.opensans_regular);
+        tv_address.setTypeface(Home.opensans_regular);
+        tv_titleinfo.setTypeface(Home.opensans_bold);
+        tv_full.setTypeface(Home.opensans_bold);
+        tv_emailll.setTypeface(Home.opensans_bold);
+        tv_phone.setTypeface(Home.opensans_bold);
+        tv_myadressess.setTypeface(Home.opensans_bold);
+        tv_kwaitaddree.setTypeface(Home.opensans_bold);
 
         if (CheckNetwork.isNetworkAvailable(getActivity())) {
 
@@ -254,6 +269,14 @@ public class Account_information extends Fragment implements View.OnClickListene
         tv_email = (TextView) v.findViewById(R.id.tv_email);
         tv_address = (TextView) v.findViewById(R.id.tv_address);
         tv_number = (TextView) v.findViewById(R.id.tv_number);
+        tv_email_main = (TextView) v.findViewById(R.id.tv_email_main);
+        tv_accountinfo_title = (TextView) v.findViewById(R.id.tv_accountinfo_title);
+        tv_titleinfo = (TextView) v.findViewById(R.id.tv_titleinfo);
+        tv_full = (TextView) v.findViewById(R.id.tv_full);
+        tv_emailll = (TextView) v.findViewById(R.id.tv_emailll);
+        tv_phone = (TextView) v.findViewById(R.id.tv_phone);
+        tv_myadressess = (TextView) v.findViewById(R.id.tv_myadressess);
+        tv_kwaitaddree = (TextView) v.findViewById(R.id.tv_kwaitaddree);
         ccp = (CountryCodePicker) v.findViewById(R.id.ccp_myaccount);
 
         lv_acc_main = (LinearLayout) v.findViewById(R.id.lv_acc_main);

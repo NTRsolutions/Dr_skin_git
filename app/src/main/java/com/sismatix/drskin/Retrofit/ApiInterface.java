@@ -252,4 +252,14 @@ public interface ApiInterface {
     @POST("AppPayFatoorahResponce.php")
     @FormUrlEncoded
     Call<ResponseBody> AppPayFatoorahResponce(@Field("paymentId") String order_id);
+
+    @POST("AppContact.php")
+    @FormUrlEncoded
+    Call<ResponseBody> AppContact(@Field("name") String customer_id,
+                                             @Field("email") String result,
+                                             @Field("que") String trackid);
+
+    @GET("AppHomeVideo.php")
+    Call<ResponseBody> getVideos();
+
 }

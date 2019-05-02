@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sismatix.drskin.Activity.Bottom_navigation;
+import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Fragment.MyCart;
 import com.sismatix.drskin.Fragment.Wishlist;
 import com.sismatix.drskin.Model.Wishlist_Model;
@@ -65,8 +66,13 @@ public class Wishlist_Adapter extends RecyclerView.Adapter<Wishlist_Adapter.MyVi
         //holder.tv_wishlist_haircare.setText(wishlist_model.getProduct_category());
         //Bottom_navigation.Check_String_NULL_Value(holder.tv_wishlist_haircare,wishlist_model.getProduct_category());
         holder.tv_wishlist_product_name.setText(wishlist_model.getProduct_name());
+        holder.tv_wishlist_product_name.setTypeface(Home.opensans_bold);
+        holder.tv_titlests.setTypeface(Home.opensans_bold);
+        holder.tv_status_show.setTypeface(Home.opensans_regular);
         Bottom_navigation.Check_String_NULL_Value(holder.tv_wishlist_product_name,wishlist_model.getProduct_name());
         holder.tv_wishlist_product_price.setText(wishlist_model.getProduct_price());
+        holder.tv_wishlist_product_price.setTypeface(Home.opensans_regular);
+        holder.tv_wishlist_order_now.setTypeface(Home.opensans_bold);
         Bottom_navigation.Check_String_NULL_Value(holder.tv_wishlist_product_price,wishlist_model.getProduct_price());
         Glide.with(context).load(wishlist_model.getProduct_image()).into(holder.iv_wishlist_image);
 
@@ -215,7 +221,7 @@ public class Wishlist_Adapter extends RecyclerView.Adapter<Wishlist_Adapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_wishlist_product_price, tv_wishlist_product_name, tv_wishlist_haircare, tv_wishlist_order_now;
+        public TextView tv_wishlist_product_price, tv_wishlist_product_name, tv_wishlist_haircare, tv_wishlist_order_now,tv_titlests,tv_status_show;
         LinearLayout lv_wishlist_click;
         ImageView iv_wishlist_image, iv_wishlist_image_remove;
 
@@ -225,6 +231,8 @@ public class Wishlist_Adapter extends RecyclerView.Adapter<Wishlist_Adapter.MyVi
             tv_wishlist_product_name = (TextView) view.findViewById(R.id.tv_wishlist_product_name);
             //tv_wishlist_haircare = (TextView) view.findViewById(R.id.tv_wishlist_haircare);
             tv_wishlist_order_now = (TextView) view.findViewById(R.id.tv_wishlist_order_now);
+            tv_status_show = (TextView) view.findViewById(R.id.tv_status_show);
+            tv_titlests = (TextView) view.findViewById(R.id.tv_titlests);
             lv_wishlist_click = (LinearLayout) view.findViewById(R.id.lv_wishlist_click);
             iv_wishlist_image = (ImageView) view.findViewById(R.id.iv_wishlist_image);
             iv_wishlist_image_remove = (ImageView) view.findViewById(R.id.iv_wishlist_image_remove);

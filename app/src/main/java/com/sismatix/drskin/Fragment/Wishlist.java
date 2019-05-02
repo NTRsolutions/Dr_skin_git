@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sismatix.drskin.Activity.Bottom_navigation;
@@ -58,6 +59,7 @@ public class Wishlist extends Fragment implements View.OnClickListener {
     static LinearLayout lv_productnotavelablewish,l_cartshow;
     public static String customerid;
     public static Button cart_count;
+    TextView tv_wishlist_title;
     ImageView searhch;
 
     public Wishlist() {
@@ -73,6 +75,8 @@ public class Wishlist extends Fragment implements View.OnClickListener {
         progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
         cart_count=(Button) v.findViewById(R.id.cart_count);
         searhch=(ImageView) v.findViewById(R.id.searhch);
+        tv_wishlist_title=(TextView) v.findViewById(R.id.tv_wishlist_title);
+        tv_wishlist_title.setTypeface(Home.opensans_bold);
         String cart_countt=Login_preference.getCart_item_count(getActivity());
         if (cart_countt.equalsIgnoreCase("")|| cart_countt == "null"){
             cart_count.setText("0");

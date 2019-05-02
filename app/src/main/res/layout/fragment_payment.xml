@@ -44,6 +44,7 @@
                         android:padding="10sp">
 
                         <TextView
+                            android:id="@+id/tv_paymentopetion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
@@ -105,6 +106,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_totlee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TOTAL"

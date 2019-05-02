@@ -57,6 +57,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/title_cart"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/cart"
@@ -140,12 +141,12 @@
                     android:layout_weight="1">
 
                     <TextView
+                        android:id="@+id/tv_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TOTAL"
                         android:textSize="16dp"
                         android:layout_marginLeft="10dp"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:gravity="center" />
 
@@ -187,14 +188,14 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rounded_btn_black">
                 <TextView
+                    android:id="@+id/tv_checkouttt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:text="@string/checkout"
                     android:padding="10dp"
                     android:gravity="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp"/>
 
             </LinearLayout>
 

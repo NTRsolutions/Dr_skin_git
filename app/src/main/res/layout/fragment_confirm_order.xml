@@ -192,6 +192,7 @@
                             android:layout_weight="1"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/tv_shppingfee"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="SHIPPING FEES"
@@ -236,6 +237,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/discounttt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="DISCOUNT"

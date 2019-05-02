@@ -329,6 +329,7 @@
                         android:background="#d1cece" />
 
                     <TextView
+                        android:id="@+id/tv_product_cont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/contactus"
@@ -336,8 +337,7 @@
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="20dp"
                         android:layout_gravity="center"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
+                        android:textColor="@color/black"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -372,6 +372,7 @@
                                     android:layout_gravity="center"
                                     android:src="@drawable/call" />
                                 <TextView
+                                    android:id="@+id/tv_phone"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Phone"
@@ -408,6 +409,7 @@
                                     android:layout_gravity="center"
                                     android:src="@drawable/email" />
                                 <TextView
+                                    android:id="@+id/tv_email"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Email"
@@ -456,14 +458,14 @@
             android:background="@drawable/rounded_btn_black">
 
             <TextView
+                android:id="@+id/tv_addtocart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="@string/addtocart"
                 android:gravity="center"
                 android:padding="3dp"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"/>
 
         </LinearLayout>
     </LinearLayout>
