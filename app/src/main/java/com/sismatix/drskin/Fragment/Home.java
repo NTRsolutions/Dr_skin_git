@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,7 @@ import me.relex.circleindicator.CircleIndicator;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,9 +81,12 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
 
     public static AssetManager am;
     public static Typeface  opensans_bold, opensans_light, opensans_regular;
+
     RecyclerView recycler_prem_videos;
     private List<slidervideo_model> slidervideo_models = new ArrayList<slidervideo_model>();
     SlidingVideoAdapterMain slidingVideoAdapterMain;
+    ScrollingPagerIndicator indicator_home;
+    RelativeLayout rl_image;
 
     public Home() {
 
@@ -94,6 +99,8 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         setFontStyle();
+        rl_image = (RelativeLayout)v.findViewById(R.id.rl_image);
+        indicator_home = (ScrollingPagerIndicator)v.findViewById(R.id.indicator_home);
         recycler_cuntrylist = (RecyclerView) v.findViewById(R.id.recycler_cuntrylist);
         recycler_prem_videos = (RecyclerView) v.findViewById(R.id.recycler_prem_videos);
 
@@ -102,8 +109,8 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
         slidingVideoAdapterMain = new SlidingVideoAdapterMain(getActivity(), slidervideo_models);
         RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recycler_prem_videos.setLayoutManager(mLayoutManager1);
-        recycler_prem_videos.addItemDecoration(new CirclePagerIndicatorDecoration());
         recycler_prem_videos.setAdapter(slidingVideoAdapterMain);
+        indicator_home.attachToRecyclerView(recycler_prem_videos);
         Log.e("sizee", "" + slidervideo_models.size());
 
         progressBar_home = (ProgressBar) v.findViewById(R.id.progressBar_home);
@@ -245,16 +252,32 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
                     slidervideo_models.clear();
                     for (int i = 0; i < cont_arr.length(); i++) {
 
-                        try {
-                            slidervideo_model schedule = new slidervideo_model(cont_arr.getString(i));
-                            slidervideo_models.add(schedule);
-                            Log.e("schedule",""+slidervideo_models.size());
+                        if (cont_arr.equals("")||cont_arr.equals(null)||cont_arr.equals("null")){
+                            recycler_prem_videos.setVisibility(View.GONE);
+                            indicator_home.setVisibility(View.GONE);
+                            rl_image.setVisibility(View.VISIBLE);
+                            rl_image.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(getContext(), "No video Available", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else {
+                            recycler_prem_videos.setVisibility(View.VISIBLE);
+                            indicator_home.setVisibility(View.VISIBLE);
+                            rl_image.setVisibility(View.GONE);
+                            try {
+                                slidervideo_model schedule = new slidervideo_model(cont_arr.getString(i));
+                                slidervideo_models.add(schedule);
+                                Log.e("schedule",""+slidervideo_models.size());
 
-                        } catch (Exception e) {
-                            Log.e("Exception", "" + e);
-                        }finally {
-                            slidingVideoAdapterMain.notifyItemChanged(i);
+                            } catch (Exception e) {
+                                Log.e("Exception", "" + e);
+                            }finally {
+                                slidingVideoAdapterMain.notifyItemChanged(i);
+                            }
                         }
+
                     }
                 } catch (Exception e) {
                     Log.e("", "" + e);

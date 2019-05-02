@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.sismatix.drskin.Activity.YPlayer;
 import com.sismatix.drskin.Model.slidervideo_model;
 import com.sismatix.drskin.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -51,7 +52,7 @@ public class SlidingVideoAdapterMain extends RecyclerView.Adapter<SlidingVideoAd
 
         Log.e("videooooiddd", "" + tst);
 
-        Glide.with(context)
+        Picasso.with(context)
                 .load("http://img.youtube.com/vi/" + tst + "/mqdefault.jpg")
                 .into(holder.iv_thumb);
 

@@ -88,6 +88,34 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_shop_videos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/rl_image"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/app_logo"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,7 +171,6 @@
                 android:indeterminateDrawable="@drawable/progressbar_ui"
                 android:visibility="gone" />
         </LinearLayout>
-
 
     </LinearLayout>
 

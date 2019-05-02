@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_marginBottom="?attr/actionBarSize"
     android:background="@color/colorPrimary"
+    android:orientation="vertical"
     tools:context=".Fragment.Home">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="6">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_weight="2.5"
             android:background="@color/colorPrimary"
-            android:layout_weight="2.5">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/app_bar_scrolling"
                 android:layout_width="match_parent"
@@ -27,6 +30,7 @@
                 android:background="@color/colorPrimary"
                 android:fitsSystemWindows="true"
                 android:theme="@style/AppTheme.AppBarOverlay">
+
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar_item_detail"
                     android:layout_width="match_parent"
@@ -34,94 +38,73 @@
                     android:gravity="center"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.AppBarOverlay">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:gravity="center"
-                        android:padding="5dp"
-                        android:background="@color/colorPrimary"
-                        android:layout_weight="2.5">
-                        <android.support.design.widget.AppBarLayout
-                            android:id="@+id/app_bar_scrolling"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:id="@+id/lv_chat_doctor"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/colorPrimary"
-                            android:fitsSystemWindows="true"
-                            android:theme="@style/AppTheme.AppBarOverlay">
-                            <android.support.v7.widget.Toolbar
-                                android:id="@+id/toolbar_item_detail"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                app:layout_collapseMode="pin"
-                                app:popupTheme="@style/AppTheme.AppBarOverlay">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="horizontal"
-                                    android:weightSum="3"
-                                    android:gravity="center">
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                    <LinearLayout
-                                        android:id="@+id/lv_chat_doctor"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical"
-                                        android:gravity="center"
-                                        android:layout_weight="1">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/chatdr" />
 
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/chatdr"/>
+                        </LinearLayout>
 
-                                    </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical"
-                                        android:layout_weight="1">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/app_logo" />
 
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/app_logo"/>
+                        </LinearLayout>
 
-                                    </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lv_ask_doctor"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                                    <LinearLayout
-                                        android:id="@+id/lv_ask_doctor"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:orientation="vertical"
-                                        android:gravity="center"
-                                        android:layout_weight="1">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/askdr" />
 
-                                        <ImageView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/askdr"/>
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </android.support.v7.widget.Toolbar>
-                        </android.support.design.widget.AppBarLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </android.support.v7.widget.Toolbar>
             </android.support.design.widget.AppBarLayout>
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="0.5"
                 android:background="@color/colorPrimary"
-                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
@@ -129,7 +112,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="none" />
-                <!--<android.support.v4.view.ViewPager
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/rl_image"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/app_logo"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1.5">
+
+                <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+                    android:id="@+id/indicator_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:spi_dotSelectedColor="#818181"
+                    app:spi_dotColor="#e0e0e0"/>
+            </LinearLayout>
+
+            <!--<android.support.v4.view.ViewPager
                 android:id="@+id/pager_home"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
@@ -141,41 +155,46 @@
                 android:layout_gravity="bottom"
                 app:ci_drawable="@drawable/circle_selected"
                 app:ci_drawable_unselected="@drawable/circle_unselected" />-->
-            </LinearLayout>
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_weight="1.5"
             android:background="@color/colorPrimary"
-            android:layout_weight="1.5">
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#F5F5F5"
                 android:gravity="center"
-                android:padding="5dp"
-                android:background="#F5F5F5">
+                android:padding="5dp">
+
                 <TextView
                     android:id="@+id/title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16dp"
+                    android:text="PLEASE CHOOSE YOUR COUNTRY"
                     android:textColor="#393939"
-                    android:text="PLEASE CHOOSE YOUR COUNTRY"/>
+                    android:textSize="16dp" />
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_cuntrylist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
-                android:id="@+id/recycler_cuntrylist"/>
+                android:background="@color/colorPrimary" />
+
             <ProgressBar
                 android:id="@+id/progressBar_home"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
+                android:layout_marginTop="100dp"
                 android:indeterminateDrawable="@drawable/progressbar_ui"
                 android:visibility="gone" />
         </LinearLayout>
