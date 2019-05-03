@@ -25,6 +25,7 @@
                 android:layout_weight="0.2">
 
                 <TextView
+                    android:id="@+id/tv_orderidtitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ORDER ID :"

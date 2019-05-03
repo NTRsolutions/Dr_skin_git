@@ -30,6 +30,7 @@ public class Privacy_policy extends Fragment {
         Allocationmemory(v);
         setHasOptionsMenu(true);
         tv_privy_title.setTypeface(Home.opensans_bold);
+        tv_privacy.setTypeface(Home.opensans_regular);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_privacypolicy);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);

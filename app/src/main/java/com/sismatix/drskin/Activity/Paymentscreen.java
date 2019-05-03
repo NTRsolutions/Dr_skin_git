@@ -195,7 +195,6 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
         String Authorization=transactionResponseModel.getAuthorizationId();
         Paymentsucessapi(Authorization);
     }
-
     private void Paymentsucessapi(String authorization) {
         ApiInterface apii = ApiClient.getClient().create(ApiInterface.class);
         Call<ResponseBody> paymentsucess = apii.AppPayFatoorahResponce(authorization);
@@ -227,13 +226,11 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
                   //  Toast.makeText(getContext(), "" + e, Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 // Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
     private void Ordernow() {
         ApiInterface apii = ApiClient.getClient().create(ApiInterface.class);
@@ -264,8 +261,6 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
                         Intent intent=new Intent(Paymentscreen.this,Order_summery_activty.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
-
-
                     } else if (code.equalsIgnoreCase("error")) {
                         Toast.makeText(Paymentscreen.this, "" + meassg, Toast.LENGTH_SHORT).show();
                     }

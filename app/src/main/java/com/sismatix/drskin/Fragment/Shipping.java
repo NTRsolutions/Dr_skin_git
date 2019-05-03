@@ -55,7 +55,7 @@ public class Shipping extends Fragment implements View.OnClickListener {
 
     LinearLayout lv_address, lv_edit_address, tv_remov_coupn;
     TextView confirm_name, confirm_address, shippingtitle, tv_edittt, tv_titleshiping, tv_apply, tv_subtotal, tv_discount, gren_total,tv_voucher
-    ,tv_subtotalss,tv_discounttt,tv_totale,tv_continue_payment;
+    ,tv_subtotalss,tv_discounttt,tv_totale,tv_continue_payment,tv_titlefilerd,tv_titlesave;
     EditText Shipping_fullname, shipping_state, shipping_streetname, shipping_Appartment, shipping_PhoneNumber, shipping_postcode, et_voucher;
     Spinner edit_spinner_country_Name;
 
@@ -130,7 +130,15 @@ public class Shipping extends Fragment implements View.OnClickListener {
         tv_discount.setTypeface(Home.opensans_bold);
         tv_totale.setTypeface(Home.opensans_bold);
         gren_total.setTypeface(Home.opensans_bold);
+        tv_titlefilerd.setTypeface(Home.opensans_bold);
+        tv_titlesave.setTypeface(Home.opensans_bold);
         tv_continue_payment.setTypeface(Home.opensans_bold);
+        Shipping_fullname.setTypeface(Home.opensans_regular);
+        shipping_state.setTypeface(Home.opensans_regular);
+        shipping_streetname.setTypeface(Home.opensans_regular);
+        shipping_Appartment.setTypeface(Home.opensans_regular);
+        shipping_postcode.setTypeface(Home.opensans_regular);
+        shipping_PhoneNumber.setTypeface(Home.opensans_regular);
 
         lv_addnewaddress.setOnClickListener(this);
         lv_save.setOnClickListener(this);
@@ -261,6 +269,8 @@ public class Shipping extends Fragment implements View.OnClickListener {
         tv_discounttt = (TextView) v.findViewById(R.id.tv_discounttt);
         tv_totale = (TextView) v.findViewById(R.id.tv_totale);
         tv_continue_payment = (TextView) v.findViewById(R.id.tv_continue_payment);
+        tv_titlefilerd = (TextView) v.findViewById(R.id.tv_titlefilerd);
+        tv_titlesave = (TextView) v.findViewById(R.id.tv_titlesave);
 
         Shipping_fullname = (EditText) v.findViewById(R.id.Shipping_fullname);
         shipping_state = (EditText) v.findViewById(R.id.shipping_state);

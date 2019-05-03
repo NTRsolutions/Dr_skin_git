@@ -1,6 +1,7 @@
 package com.sismatix.drskin.Fragment;
 
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.sismatix.drskin.Activity.Chat_messge;
 import com.sismatix.drskin.Activity.CirclePagerIndicatorDecoration;
 import com.sismatix.drskin.Adapter.Product_recycler_adapter;
 import com.sismatix.drskin.Adapter.SlidingVideoAdapterMain;
@@ -66,7 +68,7 @@ public class Shop extends Fragment implements View.OnClickListener {
     private List<slidervideo_model> slidervideo_models = new ArrayList<slidervideo_model>();
     SlidingVideoAdapterMain slidingVideoAdapterMain;
 
-    ImageView iv_search;
+    ImageView iv_search,iv_chat;
     LinearLayout lv_productnotavelable;
     String vlaue,name;
     TextView tv_title;
@@ -107,6 +109,7 @@ public class Shop extends Fragment implements View.OnClickListener {
         recycler_product.setAdapter(product_adapter);
         iv_search.setOnClickListener(this);
         l_cartshow.setOnClickListener(this);
+        iv_chat.setOnClickListener(this);
         if (CheckNetwork.isNetworkAvailable(getActivity())) {
             callgetVideoApi(vlaue);
             CALL_PRODUCT_API(vlaue);
@@ -187,6 +190,7 @@ public class Shop extends Fragment implements View.OnClickListener {
     private void Allocatememory(View v) {
         recycler_product = (RecyclerView) v.findViewById(R.id.recycler_product);
         iv_search = (ImageView) v.findViewById(R.id.iv_search);
+        iv_chat = (ImageView) v.findViewById(R.id.iv_chat);
         progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
         cart_count=(Button) v.findViewById(R.id.cart_count);
         l_cartshow=(LinearLayout) v.findViewById(R.id.l_cartshow);
@@ -285,8 +289,10 @@ public class Shop extends Fragment implements View.OnClickListener {
             loadFragment(new Search());
         }else if (view == l_cartshow){
             loadFragment(new MyCart());
+        }else if (view == iv_chat){
+            Intent intent=new Intent(getActivity(), Chat_messge.class);
+            startActivity(intent);
         }
-
     }
 
     public void loadFragment(Fragment fragment) {

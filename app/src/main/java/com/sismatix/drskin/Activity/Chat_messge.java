@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.R;
 import com.sismatix.drskin.sdk.JivoDelegate;
 import com.sismatix.drskin.sdk.JivoSdk;
@@ -16,6 +18,7 @@ import java.util.Locale;
 
 public class Chat_messge extends AppCompatActivity implements JivoDelegate {
     ImageView iv_close_chat;
+    TextView tv_chat_title;
     //**************
     JivoSdk jivoSdk;
     @Override
@@ -24,6 +27,8 @@ public class Chat_messge extends AppCompatActivity implements JivoDelegate {
         setContentView(R.layout.activity_chat_messge);
 
         iv_close_chat=(ImageView)findViewById(R.id.iv_close_chat);
+        tv_chat_title=(TextView) findViewById(R.id.tv_chat_title);
+        tv_chat_title.setTypeface(Home.opensans_bold);
 
         iv_close_chat.setOnClickListener(new View.OnClickListener() {
             @Override

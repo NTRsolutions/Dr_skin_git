@@ -533,11 +533,12 @@
             android:background="#e1e1e1">
 
             <TextView
+                android:id="@+id/tv_titlefilerd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:text="* R E Q U I R E D  F I E L D S"
+                android:text="* REQUIRED FIELDS"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -726,6 +727,7 @@
                     android:background="@drawable/rounded_btn_black">
 
                     <TextView
+                        android:id="@+id/tv_titlesave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"

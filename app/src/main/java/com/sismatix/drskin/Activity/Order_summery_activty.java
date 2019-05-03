@@ -2,6 +2,7 @@ package com.sismatix.drskin.Activity;
 
 import android.app.NativeActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sismatix.drskin.Adapter.Confirmation_cart_Adapter;
+import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Model.Cart_Model;
 import com.sismatix.drskin.Preference.CheckNetwork;
 import com.sismatix.drskin.R;
@@ -32,7 +34,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Order_summery_activty extends AppCompatActivity {
-    TextView tv_status,tv_orderid,tv_date,tv_pay_met,tv_add_os,tv_fname,tv_subtotal,tv_ship_fees,tv_gtotal,tv_continue_payment;
+    TextView tv_status,tv_orderid,tv_date,tv_pay_met,tv_add_os,tv_fname,tv_subtotal,tv_ship_fees,tv_gtotal,tv_continue_payment,
+            tv_ordernotitle,tv_date_title,tv_payment_title,tv_shipping_title,tv_ordersummery_title,
+            tv_successfuliy,tv_subsucess,tv_statustitle,
+            tv_subtotle_titie,tv_ferrs,tv_totletitle;
     String order_id;
     RecyclerView order_summary_cart;
     private List<Cart_Model> cartList = new ArrayList<Cart_Model>();
@@ -48,7 +53,27 @@ public class Order_summery_activty extends AppCompatActivity {
             order_id = bundle.getString("order");
             Log.e("order_id_summery",""+order_id);
         }
-
+        tv_ordersummery_title.setTypeface(Home.opensans_bold);
+        tv_successfuliy.setTypeface(Home.opensans_bold);
+        tv_statustitle.setTypeface(Home.opensans_bold);
+        tv_status.setTypeface(Home.opensans_bold);
+        tv_shipping_title.setTypeface(Home.opensans_bold);
+        tv_fname.setTypeface(Home.opensans_bold);
+        tv_subtotle_titie.setTypeface(Home.opensans_bold);
+        tv_ferrs.setTypeface(Home.opensans_bold);
+        tv_totletitle.setTypeface(Home.opensans_bold);
+        tv_subtotal.setTypeface(Home.opensans_bold);
+        tv_ship_fees.setTypeface(Home.opensans_bold);
+        tv_gtotal.setTypeface(Home.opensans_bold);
+        tv_continue_payment.setTypeface(Home.opensans_bold);
+        tv_subsucess.setTypeface(Home.opensans_regular);
+        tv_ordernotitle.setTypeface(Home.opensans_regular);
+        tv_date_title.setTypeface(Home.opensans_regular);
+        tv_payment_title.setTypeface(Home.opensans_regular);
+        tv_orderid.setTypeface(Home.opensans_regular);
+        tv_date.setTypeface(Home.opensans_regular);
+        tv_pay_met.setTypeface(Home.opensans_regular);
+        tv_add_os.setTypeface(Home.opensans_regular);
         if (CheckNetwork.isNetworkAvailable(Order_summery_activty.this)) {
 
             CALL_ORDER_SUMMARY_API(order_id);
@@ -106,6 +131,11 @@ public class Order_summery_activty extends AppCompatActivity {
 
                             String shipping1 = jsonObject.getString("grand_total");
                         Log.e("shipping",""+shipping1);
+                        if (status_order.equalsIgnoreCase("Success")){
+                            tv_status.setTextColor(Color.parseColor("#37b268"));
+                        }else if (status_order.equalsIgnoreCase("pending")){
+                            tv_status.setTextColor(Color.parseColor("#000000"));
+                        }
                         tv_pay_met.setText(PaymentMethod);
                         tv_status.setText(status_order);
                         tv_orderid.setText(increment_id);
@@ -190,6 +220,17 @@ public class Order_summery_activty extends AppCompatActivity {
         tv_ship_fees = (TextView)findViewById(R.id.tv_ship_fees);
         tv_gtotal = (TextView)findViewById(R.id.tv_gtotal);
         tv_continue_payment = (TextView)findViewById(R.id.tv_continue_payment);
+        tv_ordersummery_title = (TextView)findViewById(R.id.tv_ordersummery_title);
+        tv_successfuliy = (TextView) findViewById(R.id.tv_successfuliy);
+        tv_subsucess = (TextView) findViewById(R.id.tv_subsucess);
+        tv_statustitle = (TextView)findViewById(R.id.tv_statustitle);
+        tv_ordernotitle = (TextView) findViewById(R.id.tv_ordernotitle);
+        tv_payment_title = (TextView) findViewById(R.id.tv_payment_title);
+        tv_date_title = (TextView) findViewById(R.id.tv_date_title);
+        tv_shipping_title = (TextView)findViewById(R.id.tv_shipping_title);
+        tv_subtotle_titie = (TextView) findViewById(R.id.tv_subtotle_titie);
+        tv_ferrs = (TextView)findViewById(R.id.tv_ferrs);
+        tv_totletitle = (TextView)findViewById(R.id.tv_totletitle);
 
         order_summary_cart = (RecyclerView)findViewById(R.id.order_summary_cart);
 

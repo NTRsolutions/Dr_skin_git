@@ -11,13 +11,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Fragment.SignIn;
 import com.sismatix.drskin.Preference.Login_preference;
 import com.sismatix.drskin.R;
 
 public class Splash extends AppCompatActivity implements View.OnClickListener {
     LinearLayout lv_sikp_splash,lv_signin_splash;
+    TextView tvsigntitle,tv_titleskip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,10 @@ public class Splash extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_splash);
         lv_sikp_splash = (LinearLayout) findViewById(R.id.lv_sikp_splash);
         lv_signin_splash = (LinearLayout) findViewById(R.id.lv_signin_splash);
+        tvsigntitle = (TextView) findViewById(R.id.tvsigntitle);
+        tv_titleskip = (TextView) findViewById(R.id.tv_titleskip);
+        tvsigntitle.setTypeface(Home.opensans_bold);
+        tv_titleskip.setTypeface(Home.opensans_bold);
         String logflag=Login_preference.getLogin_flag(Splash.this);
             if (logflag.equalsIgnoreCase("1") || logflag == "1") {
                 Intent i =new Intent(Splash.this,Bottom_navigation.class);
@@ -51,17 +58,16 @@ public class Splash extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (view == lv_signin_splash){
-            pushFragment(new SignIn());
             Intent i=new Intent(Splash.this,Bottom_navigation.class);
             //Bundle b=new Bundle();
             i.putExtra("screen","Login");
             startActivity(i);
+            finish();
         }else if(view == lv_sikp_splash){
             Intent i =new Intent(Splash.this,Bottom_navigation.class);
             startActivity(i);
             finish();
         }
-
     }
     private void pushFragment(Fragment fragment) {
         if (fragment == null)

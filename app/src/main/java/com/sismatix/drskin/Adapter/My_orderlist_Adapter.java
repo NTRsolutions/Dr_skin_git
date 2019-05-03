@@ -2,6 +2,7 @@ package com.sismatix.drskin.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -63,9 +64,18 @@ public class My_orderlist_Adapter extends RecyclerView.Adapter<My_orderlist_Adap
         String strDate = sdf.format(c.getTime());
         String[] parts = strDate.split(" "); //CREATED_DATE mins pass string date and time
         String datee = parts[0];
-
+        holder.tv_orderidtitle.setTypeface(Home.opensans_bold);
+        holder.tv_order_id.setTypeface(Home.opensans_bold);
+        holder.tv_created_date.setTypeface(Home.opensans_regular);
         holder.tv_created_date.setText(datee);
         holder.tv_order_id.setText(my_order_model.getIncrement_id());
+        holder.tv_order_status.setTypeface(Home.opensans_bold);
+        Log.e("my_orderStatus",""+my_order_model.getStatus());
+        if (my_order_model.getStatus().equalsIgnoreCase("pending")){
+            holder.tv_order_status.setTextColor(Color.BLACK);
+        }else  if (my_order_model.getStatus().equalsIgnoreCase("Successful")){
+            holder.tv_order_status.setTextColor(Color.RED);
+        }
         holder.tv_order_status.setText(my_order_model.getStatus());
         holder.lv_onclick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +146,7 @@ public class My_orderlist_Adapter extends RecyclerView.Adapter<My_orderlist_Adap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_created_date, tv_order_id,tv_order_status, tv_name, tv_paymentmethod, grand_total, tv_wishlist_order_now, tv_wishlist_haircare,
-                tv_orderid_title, tv_rec, tv_pm, tv_tot_total;
+                tv_orderidtitle, tv_rec, tv_pm, tv_tot_total;
         LinearLayout lv_reorder,lv_onclick;
 
         public MyViewHolder(@NonNull View view) {
@@ -144,6 +154,7 @@ public class My_orderlist_Adapter extends RecyclerView.Adapter<My_orderlist_Adap
             tv_order_id = (TextView) view.findViewById(R.id.tv_order_id);
             tv_created_date = (TextView) view.findViewById(R.id.tv_created_date);
             tv_order_status = (TextView) view.findViewById(R.id.tv_order_status);
+            tv_orderidtitle = (TextView) view.findViewById(R.id.tv_orderidtitle);
             lv_reorder = (LinearLayout) view.findViewById(R.id.lv_reorder);
             lv_onclick = (LinearLayout) view.findViewById(R.id.lv_onclick);
         }

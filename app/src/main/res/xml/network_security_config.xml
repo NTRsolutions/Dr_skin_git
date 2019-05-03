@@ -6,5 +6,6 @@
         <domain includeSubdomains="true">travel.demoproject.info</domain>
         <domain includeSubdomains="true">drglossy.com</domain>
         <domain includeSubdomains="true">demo.myfatoorah.com</domain>
+        <domain includeSubdomains="true">youtube.com</domain>
     </domain-config>
 </network-security-config>

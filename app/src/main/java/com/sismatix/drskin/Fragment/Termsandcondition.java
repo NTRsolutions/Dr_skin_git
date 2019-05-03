@@ -19,7 +19,7 @@ import com.sismatix.drskin.R;
  */
 public class Termsandcondition extends Fragment {
     Toolbar toolbar_termsconditions;
-    TextView tv_termscondition;
+    TextView tv_termscondition,tv_terms_title;
 
 
     public Termsandcondition() {
@@ -31,6 +31,8 @@ public class Termsandcondition extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_termsandcondition, container, false);
         Allocationmemory(v);
+        tv_terms_title.setTypeface(Home.opensans_bold);
+        tv_termscondition.setTypeface(Home.opensans_regular);
         setHasOptionsMenu(true);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_termsconditions);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
@@ -42,6 +44,7 @@ public class Termsandcondition extends Fragment {
     private void Allocationmemory(View v) {
         toolbar_termsconditions=(Toolbar)v.findViewById(R.id.toolbar_termsconditions);
         tv_termscondition=(TextView) v.findViewById(R.id.tv_termscondition);
+        tv_terms_title=(TextView) v.findViewById(R.id.tv_terms_title);
 
     }
     @Override

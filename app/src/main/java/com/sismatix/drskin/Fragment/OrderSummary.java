@@ -1,6 +1,7 @@
 package com.sismatix.drskin.Fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -39,7 +40,9 @@ import retrofit2.Response;
  */
 public class OrderSummary extends Fragment {
 
-    TextView tv_status,tv_orderid,tv_date,tv_pay_met,tv_add_os,tv_fname,tv_subtotal,tv_ship_fees,tv_gtotal;
+    TextView tv_status,tv_orderid,tv_date,tv_pay_met,tv_add_os,tv_fname,tv_subtotal,tv_ship_fees,tv_gtotal,tv_ordersummery_title,
+            tv_successfuliy,tv_subsucess,tv_statustitle,tv_ordernotitle,tv_date_title,tv_payment_title,tv_shipping_title,
+            tv_subtotle_titie,tv_ferrs,tv_totletitle,tv_continue_payment;
     String order_id;
     RecyclerView order_summary_cart;
     private List<Cart_Model> cartList = new ArrayList<Cart_Model>();
@@ -57,6 +60,27 @@ public class OrderSummary extends Fragment {
         View v = inflater.inflate(R.layout.fragment_order_summary, container, false);
 
         AllocateMemory(v);
+        tv_ordersummery_title.setTypeface(Home.opensans_bold);
+        tv_successfuliy.setTypeface(Home.opensans_bold);
+        tv_statustitle.setTypeface(Home.opensans_bold);
+        tv_status.setTypeface(Home.opensans_bold);
+        tv_shipping_title.setTypeface(Home.opensans_bold);
+        tv_fname.setTypeface(Home.opensans_bold);
+        tv_subtotle_titie.setTypeface(Home.opensans_bold);
+        tv_ferrs.setTypeface(Home.opensans_bold);
+        tv_totletitle.setTypeface(Home.opensans_bold);
+        tv_subtotal.setTypeface(Home.opensans_bold);
+        tv_ship_fees.setTypeface(Home.opensans_bold);
+        tv_gtotal.setTypeface(Home.opensans_bold);
+        tv_continue_payment.setTypeface(Home.opensans_bold);
+        tv_subsucess.setTypeface(Home.opensans_regular);
+        tv_ordernotitle.setTypeface(Home.opensans_regular);
+        tv_date_title.setTypeface(Home.opensans_regular);
+        tv_payment_title.setTypeface(Home.opensans_regular);
+        tv_orderid.setTypeface(Home.opensans_regular);
+        tv_date.setTypeface(Home.opensans_regular);
+        tv_pay_met.setTypeface(Home.opensans_regular);
+        tv_add_os.setTypeface(Home.opensans_regular);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
@@ -84,6 +108,7 @@ public class OrderSummary extends Fragment {
                 try {
                     jsonObject = new JSONObject(response.body().string());
                     String status = jsonObject.getString("status");
+                    Log.e("json",""+jsonObject);
                     if (status.equalsIgnoreCase("Success")) {
 
                         String order = jsonObject.getString("order");
@@ -112,7 +137,14 @@ public class OrderSummary extends Fragment {
                         String shipping1 = jsonObject.getString("row_total");
                         Log.e("shipping",""+shipping1);
 
-                        tv_status.setText(status_order);
+                        if (status_order.equalsIgnoreCase("Success")){
+                            tv_status.setTextColor(Color.parseColor("#37b268"));
+                           // tv_status.setText(status_order);
+                        }else if (status_order.equalsIgnoreCase("pending")){
+                            tv_status.setTextColor(Color.parseColor("#000000"));
+                            tv_status.setText(status_order);
+                        }
+
                         tv_orderid.setText(increment_id);
                         tv_date.setText(created_at);
                         tv_subtotal.setText(subtotal);
@@ -195,6 +227,18 @@ public class OrderSummary extends Fragment {
         tv_subtotal = (TextView) v.findViewById(R.id.tv_subtotal);
         tv_ship_fees = (TextView) v.findViewById(R.id.tv_ship_fees);
         tv_gtotal = (TextView) v.findViewById(R.id.tv_gtotal);
+        tv_ordersummery_title = (TextView) v.findViewById(R.id.tv_ordersummery_title);
+        tv_successfuliy = (TextView) v.findViewById(R.id.tv_successfuliy);
+        tv_subsucess = (TextView) v.findViewById(R.id.tv_subsucess);
+        tv_statustitle = (TextView) v.findViewById(R.id.tv_statustitle);
+        tv_ordernotitle = (TextView) v.findViewById(R.id.tv_ordernotitle);
+        tv_payment_title = (TextView) v.findViewById(R.id.tv_payment_title);
+        tv_date_title = (TextView) v.findViewById(R.id.tv_date_title);
+        tv_shipping_title = (TextView) v.findViewById(R.id.tv_shipping_title);
+        tv_subtotle_titie = (TextView) v.findViewById(R.id.tv_subtotle_titie);
+        tv_ferrs = (TextView) v.findViewById(R.id.tv_ferrs);
+        tv_totletitle = (TextView) v.findViewById(R.id.tv_totletitle);
+        tv_continue_payment = (TextView) v.findViewById(R.id.tv_continue_payment);
 
         order_summary_cart = (RecyclerView) v.findViewById(R.id.order_summary_cart);
 

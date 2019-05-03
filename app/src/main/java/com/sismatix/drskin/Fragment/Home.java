@@ -181,7 +181,7 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
         categorylist.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                Log.e("response", "" + response.body().toString());
+                Log.e("response", "" + response);
                 progressBar_home.setVisibility(View.GONE);
                 cuntrylist_models.clear();
                 JSONObject jsonObject = null;

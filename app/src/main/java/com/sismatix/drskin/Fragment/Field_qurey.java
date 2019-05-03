@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sismatix.drskin.Activity.Bottom_navigation;
@@ -41,6 +42,7 @@ public class Field_qurey extends Fragment {
     }
     EditText sign_fullname,sign_email,edt_article_detail;
     LinearLayout lv_Checkout,lv_ask_doctor;
+    TextView tv_title,tv_submittitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +55,13 @@ public class Field_qurey extends Fragment {
         edt_article_detail=(EditText)v.findViewById(R.id.edt_article_detail);
         lv_Checkout=(LinearLayout) v.findViewById(R.id.lv_Checkout);
         lv_ask_doctor=(LinearLayout) v.findViewById(R.id.lv_ask_doctor);
+        tv_title=(TextView) v.findViewById(R.id.tv_title);
+        tv_submittitle=(TextView) v.findViewById(R.id.tv_submittitle);
+        sign_fullname.setTypeface(Home.opensans_regular);
+        sign_email.setTypeface(Home.opensans_regular);
+        edt_article_detail.setTypeface(Home.opensans_regular);
+        tv_title.setTypeface(Home.opensans_bold);
+        tv_submittitle.setTypeface(Home.opensans_bold);
         lv_ask_doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
