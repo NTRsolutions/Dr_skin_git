@@ -134,8 +134,8 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         }else if(view == lv_mywwishlist){
             pushFragment(new Wishlist(),"wishlist");
         }else if(view == lv_accountinfo){
-            loadFragment(new Account_information());
-            //pushFragment(new Account_information(),"account_info");
+            //loadFragment(new Account_information());
+            pushFragment(new Account_information(),"account_info");
         }else if(view == lv_aboutus){
             pushFragment(new Aboutus(),"aboutus");
         }else if(view == lv_tac){

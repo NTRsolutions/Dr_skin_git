@@ -261,6 +261,7 @@ public class Paymentscreen extends AppCompatActivity implements MFSDKListener, V
                         Intent intent=new Intent(Paymentscreen.this,Order_summery_activty.class);
                         intent.putExtras(bundle);
                         startActivity(intent);
+                        finish();
                     } else if (code.equalsIgnoreCase("error")) {
                         Toast.makeText(Paymentscreen.this, "" + meassg, Toast.LENGTH_SHORT).show();
                     }

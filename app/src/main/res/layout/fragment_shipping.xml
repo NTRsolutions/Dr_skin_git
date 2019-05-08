@@ -570,7 +570,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Full Name*"
                         android:ems="10"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                         android:textColor="#000000"
                         android:textColorHint="@color/ed_text_signin"
                         android:textCursorDrawable="@drawable/cursored"

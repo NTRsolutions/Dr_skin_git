@@ -158,7 +158,7 @@ public class Order_summery_activty extends AppCompatActivity {
                         tv_add_os.setText(add_obj.getString("apartment") + "," + "" + add_obj.getString("street") + "," + "" +
                                 add_obj.getString("city") + "," + add_obj.getString("postcode") + "," + "" + add_obj.getString("phone"));
 
-                        Toast.makeText(Order_summery_activty.this, "hmmmm", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Order_summery_activty.this, "hmmmm", Toast.LENGTH_SHORT).show();
 
                         String products = jsonObject.getString("products");
                         Log.e("products_os",""+products);

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sismatix.drskin.Activity.YPlayer;
+import com.sismatix.drskin.Activity.YouTubePopup;
 import com.sismatix.drskin.Adapter.SlidingVideoAdapterMain;
 import com.sismatix.drskin.Model.slidervideo_model;
 import com.sismatix.drskin.Preference.CheckNetwork;
@@ -44,33 +45,33 @@ import static com.sismatix.drskin.Adapter.SlidingVideoAdapterMain.video_id_pass;
  */
 public class Live_withdr extends Fragment {
 
-    TextView tv_titleupcoming,tv_time,tv_day,tv_th,tv_month_yres,tv_submittitle;
-    LinearLayout lv_ask_doctor,tv_watchnow;
+    TextView tv_titleupcoming, tv_time, tv_day, tv_th, tv_month_yres, tv_submittitle;
+    LinearLayout lv_ask_doctor, tv_watchnow;
 
     RecyclerView recycler_shop_videos;
     private List<slidervideo_model> slidervideo_models = new ArrayList<slidervideo_model>();
     SlidingVideoAdapterMain slidingVideoAdapterMain;
     RelativeLayout rl_image;
+
     public Live_withdr() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_live_withdr, container, false);
-        tv_titleupcoming=(TextView)v.findViewById(R.id.tv_titleupcoming);
-        tv_time=(TextView)v.findViewById(R.id.tv_time);
-        tv_day=(TextView)v.findViewById(R.id.tv_day);
-        tv_submittitle=(TextView)v.findViewById(R.id.tv_submittitle);
-        tv_month_yres=(TextView)v.findViewById(R.id.tv_month_yres);
-        tv_th=(TextView)v.findViewById(R.id.tv_th);
-        lv_ask_doctor=(LinearLayout)v.findViewById(R.id.lv_ask_doctor);
-        tv_watchnow=(LinearLayout)v.findViewById(R.id.tv_watchnow);
-        rl_image=(RelativeLayout) v.findViewById(R.id.rl_image);
-        recycler_shop_videos=(RecyclerView) v.findViewById(R.id.recycler_live_videos);
+        View v = inflater.inflate(R.layout.fragment_live_withdr, container, false);
+        tv_titleupcoming = (TextView) v.findViewById(R.id.tv_titleupcoming);
+        tv_time = (TextView) v.findViewById(R.id.tv_time);
+        tv_day = (TextView) v.findViewById(R.id.tv_day);
+        tv_submittitle = (TextView) v.findViewById(R.id.tv_submittitle);
+        tv_month_yres = (TextView) v.findViewById(R.id.tv_month_yres);
+        tv_th = (TextView) v.findViewById(R.id.tv_th);
+        lv_ask_doctor = (LinearLayout) v.findViewById(R.id.lv_ask_doctor);
+        tv_watchnow = (LinearLayout) v.findViewById(R.id.tv_watchnow);
+        rl_image = (RelativeLayout) v.findViewById(R.id.rl_image);
+        recycler_shop_videos = (RecyclerView) v.findViewById(R.id.recycler_live_videos);
         slidingVideoAdapterMain = new SlidingVideoAdapterMain(getActivity(), slidervideo_models);
         RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recycler_shop_videos.setLayoutManager(mLayoutManager1);
@@ -93,9 +94,9 @@ public class Live_withdr extends Fragment {
         tv_watchnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.e("video_id_pass",""+video_id_pass);
+                Log.e("video_id_pass", "" + video_id_pass);
                 // Toast.makeText(context, video_id_pass, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), YPlayer.class);
+                Intent intent = new Intent(getActivity(), YouTubePopup.class);
                 intent.putExtra("videoId", video_id_pass);
                 startActivity(intent);
             }
@@ -120,8 +121,8 @@ public class Live_withdr extends Fragment {
                     if (status.equalsIgnoreCase("Success")) {
 
                         String shopvideo = jsonObject.getString("video_url");
-                        Log.e("shopvideo",""+shopvideo);
-                        String datetime =jsonObject.getString("next_live_date");
+                        Log.e("shopvideo", "" + shopvideo);
+                        String datetime = jsonObject.getString("next_live_date");
                         Calendar c = Calendar.getInstance();
                         SimpleDateFormat sdf = new SimpleDateFormat(datetime);
                         String strDate = sdf.format(c.getTime());
@@ -137,7 +138,7 @@ public class Live_withdr extends Fragment {
                         int h = Integer.parseInt(partss[0]);
                         int m = Integer.parseInt(partss[1]);
                         String s = partss[2];
-                        Log.e("date_covert","houes:"+h+" mints:"+m+"  second:"+s+"");
+                        Log.e("date_covert", "houes:" + h + " mints:" + m + "  second:" + s + "");
 
                         String timeSet = "";
                         if (h > 12) {
@@ -146,31 +147,31 @@ public class Live_withdr extends Fragment {
                         } else if (h == 0) {
                             h += 12;
                             timeSet = "AM";
-                        } else if (h == 12){
+                        } else if (h == 12) {
                             timeSet = "PM";
-                        }else{
+                        } else {
                             timeSet = "AM";
                         }
                         String min = "";
                         if (m < 10)
-                            min = "0" + m ;
+                            min = "0" + m;
                         else
                             min = String.valueOf(m);
                         tv_time.setTypeface(Home.opensans_bold);
-                        Log.e("time_set",""+h + ":" + min + " " + timeSet );
-                        tv_time.setText(h + ":" + min + " " + timeSet );
+                        Log.e("time_set", "" + h + ":" + min + " " + timeSet);
+                        tv_time.setText(h + ":" + min + " " + timeSet);
 
 
                         DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                         DateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
-                        String inputDateStr=datee;
+                        String inputDateStr = datee;
                         Date date = inputFormat.parse(inputDateStr);
                         String outputDateStr = outputFormat.format(date);
-                        Log.e("showfinal_date",""+outputDateStr);
+                        Log.e("showfinal_date", "" + outputDateStr);
 
 
                         String[] separate = outputDateStr.split(" ");
-                      //  String s =separate[0]; // this will contain "Fruit"
+                        //  String s =separate[0]; // this will contain "Fruit"
                         String day = separate[0];
                         String month = separate[1];
                         String yers = separate[2];
@@ -178,9 +179,9 @@ public class Live_withdr extends Fragment {
                         tv_day.setText(day);
                         tv_th.setTypeface(Home.opensans_bold);
                         tv_month_yres.setTypeface(Home.opensans_light);
-                        tv_month_yres.setText("OF "+month+"\n"+yers);
+                        tv_month_yres.setText("OF " + month + "\n" + yers);
 
-                        if (shopvideo.equalsIgnoreCase("")||shopvideo.equalsIgnoreCase(null)||shopvideo.equalsIgnoreCase("null")){
+                        if (shopvideo.equalsIgnoreCase("") || shopvideo.equalsIgnoreCase(null) || shopvideo.equalsIgnoreCase("null")) {
 
                             rl_image.setVisibility(View.VISIBLE);
                             recycler_shop_videos.setVisibility(View.GONE);
@@ -192,7 +193,7 @@ public class Live_withdr extends Fragment {
                                 }
                             });
 
-                        }else {
+                        } else {
 
                             rl_image.setVisibility(View.GONE);
                             recycler_shop_videos.setVisibility(View.VISIBLE);
@@ -208,7 +209,7 @@ public class Live_withdr extends Fragment {
 
                 } catch (Exception e) {
                     Log.e("", "" + e);
-                }finally {
+                } finally {
                     slidingVideoAdapterMain.notifyDataSetChanged();
                 }
             }

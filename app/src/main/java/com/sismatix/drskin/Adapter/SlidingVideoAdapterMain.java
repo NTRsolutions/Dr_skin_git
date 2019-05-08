@@ -1,7 +1,9 @@
 package com.sismatix.drskin.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -11,11 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.sismatix.drskin.Activity.YPlayer;
+import com.sismatix.drskin.Activity.YouTubePopup;
 import com.sismatix.drskin.Model.slidervideo_model;
 import com.sismatix.drskin.R;
+import com.sismatix.drskin.Retrofit.Configgg;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -53,24 +61,96 @@ public class SlidingVideoAdapterMain extends RecyclerView.Adapter<SlidingVideoAd
         video_id_pass = getYoutubeID(slidervideo_model.getProd_video());
         Log.e("videooooiddd", "" + tst);
 
-        Picasso.with(context)
-                .load("http://img.youtube.com/vi/" + tst + "/mqdefault.jpg")
+        String vidpic = "http://img.youtube.com/vi/" + tst + "/mqdefault.jpg";
+
+        Log.e("vidpic",""+vidpic);
+
+        Glide.with(context)
+                .load(vidpic)
                 .into(holder.iv_thumb);
 
         holder.lv_thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AppCompatActivity activity = (AppCompatActivity) v.getContext();
 
+                /*final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.custom_video_popup);
+                dialog.setTitle("Title...");
+
+                //Youtube(video_id_pass, holder);
+
+                dialog.show();*/
+
+                final AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 Log.e("video_id_pass",""+video_id_pass);
                 // Toast.makeText(context, video_id_pass, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, YPlayer.class);
+                Intent intent = new Intent(context, YouTubePopup.class);//YPlayer
                 intent.putExtra("videoId", video_id_pass);
                 activity.startActivity(intent);
             }
         });
 
     }
+
+    /*private void Youtube(final String video_id_pass, final MyViewHolder holder) {
+        Log.e("vidsopop", "" + video_id_pass);
+
+        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
+        final AppCompatActivity activity = (AppCompatActivity) context;
+        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.youtube_popup, youTubePlayerFragment).commit();
+        youTubePlayerFragment.initialize(Configgg.YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                if (!b) {
+
+                    holder.YPlayerr = youTubePlayer;
+                    holder.YPlayerr.setFullscreen(false);
+                    holder.YPlayerr.setShowFullscreenButton(false);
+                    holder.YPlayerr.loadVideo(video_id_pass);
+                    holder.YPlayerr.setPlayerStateChangeListener(new YouTubePlayer.PlayerStateChangeListener() {
+                        @Override
+                        public void onLoading() {
+
+                        }
+
+                        @Override
+                        public void onLoaded(String s) {
+                            holder.YPlayerr.pause();
+                        }
+
+                        @Override
+                        public void onAdStarted() {
+
+                        }
+
+                        @Override
+                        public void onVideoStarted() {
+
+                        }
+
+                        @Override
+                        public void onVideoEnded() {
+
+                        }
+
+                        @Override
+                        public void onError(YouTubePlayer.ErrorReason errorReason) {
+
+                        }
+                    });
+                    holder.YPlayerr.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CONTROL_SYSTEM_UI);
+                    holder.YPlayerr.getCurrentTimeMillis();
+
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Toast.makeText(activity, "Video Problem", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 
     private String getYoutubeID(String youtubeUrl) {
         if (TextUtils.isEmpty(youtubeUrl)) {
@@ -108,11 +188,12 @@ public class SlidingVideoAdapterMain extends RecyclerView.Adapter<SlidingVideoAd
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout lv_thumbnail;
         ImageView iv_thumb;
         View view;
+        public static YouTubePlayer YPlayerr;
 
         public MyViewHolder(View view) {
             super(view);

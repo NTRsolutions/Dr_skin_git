@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:listDivider">@color/ed_text_signin</item>
     </style>
 
@@ -33,5 +35,10 @@
     <style name="NavigationDrawerStyle">
         <item name="android:textSize">18sp</item>
         <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="AppTheme.CustomTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 </resources>

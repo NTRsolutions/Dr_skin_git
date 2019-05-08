@@ -44,7 +44,6 @@ public class Checkout extends Fragment implements View.OnClickListener {
             discount_amount = bundle.getString("discount_amount");
             Log.e("checkout_tot", "" + tot_cart);
             Log.e("checkout_subtot", "" + subtot);
-
         }
         Bundle b = new Bundle();
         b.putString("grand_tot_cart", tot_cart);

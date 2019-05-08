@@ -98,9 +98,6 @@ public class MyCart extends Fragment {
         cart_recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         cart_recyclerview.setAdapter(cart_adapter);
 
-
-
-
         iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

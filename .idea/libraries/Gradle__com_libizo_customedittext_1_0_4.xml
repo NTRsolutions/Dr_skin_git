@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.libizo:customedittext-1.0.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customedittext-1.0.4.aar/9a1a33342fefa0f3a1d4ed6088680bcc/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customedittext-1.0.4.aar/9a1a33342fefa0f3a1d4ed6088680bcc/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.libizo/customedittext/1.0.4/23d2f3960fdf39d99437ac444cc6d593bd785999/customedittext-1.0.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
