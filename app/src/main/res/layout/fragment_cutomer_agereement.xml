@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
-    android:layout_marginBottom="?attr/actionBarSize">
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +25,7 @@
 
                 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/toolbar_privacypolicy"
+                    android:id="@+id/toolbar_agereement"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/hedercolor"
@@ -50,7 +49,6 @@
                             android:textColor="@color/white"
                             android:textSize="18dp"
                             android:textStyle="bold" />
-
                     </LinearLayout>
 
                 </android.support.v7.widget.Toolbar>
@@ -82,9 +80,10 @@
                     android:layout_marginTop="20dp"
                     android:padding="10dp">
                     <TextView
-                        android:id="@+id/tv_privacy"
+                        android:id="@+id/tv_agereement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:text=""/>
                 </LinearLayout>
 

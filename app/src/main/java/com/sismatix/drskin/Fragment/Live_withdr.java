@@ -65,11 +65,10 @@ public class Live_withdr extends Fragment {
         tv_titleupcoming = (TextView) v.findViewById(R.id.tv_titleupcoming);
         tv_time = (TextView) v.findViewById(R.id.tv_time);
         tv_day = (TextView) v.findViewById(R.id.tv_day);
-        tv_submittitle = (TextView) v.findViewById(R.id.tv_submittitle);
         tv_month_yres = (TextView) v.findViewById(R.id.tv_month_yres);
         tv_th = (TextView) v.findViewById(R.id.tv_th);
         lv_ask_doctor = (LinearLayout) v.findViewById(R.id.lv_ask_doctor);
-        tv_watchnow = (LinearLayout) v.findViewById(R.id.tv_watchnow);
+        //tv_watchnow = (LinearLayout) v.findViewById(R.id.tv_watchnow);
         rl_image = (RelativeLayout) v.findViewById(R.id.rl_image);
         recycler_shop_videos = (RecyclerView) v.findViewById(R.id.recycler_live_videos);
         slidingVideoAdapterMain = new SlidingVideoAdapterMain(getActivity(), slidervideo_models);
@@ -78,7 +77,6 @@ public class Live_withdr extends Fragment {
         recycler_shop_videos.setAdapter(slidingVideoAdapterMain);
         Log.e("sizee", "" + slidervideo_models.size());
         tv_titleupcoming.setTypeface(Home.opensans_bold);
-        tv_submittitle.setTypeface(Home.opensans_bold);
         if (CheckNetwork.isNetworkAvailable(getActivity())) {
             livevideoapi();
         } else {
@@ -91,7 +89,7 @@ public class Live_withdr extends Fragment {
             }
         });
 
-        tv_watchnow.setOnClickListener(new View.OnClickListener() {
+        /*tv_watchnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e("video_id_pass", "" + video_id_pass);
@@ -100,7 +98,7 @@ public class Live_withdr extends Fragment {
                 intent.putExtra("videoId", video_id_pass);
                 startActivity(intent);
             }
-        });
+        });*/
 
         return v;
     }

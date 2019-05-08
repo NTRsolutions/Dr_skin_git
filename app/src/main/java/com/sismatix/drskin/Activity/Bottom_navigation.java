@@ -195,14 +195,13 @@ public class Bottom_navigation extends AppCompatActivity  {
 
     };
 
-
-
     private void applyFontToMenuItem(MenuItem mi) {
         Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
         SpannableString mNewTitle = new SpannableString(mi.getTitle());
         mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         mi.setTitle(mNewTitle);
     }
+
    /* @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 // Handle navigation view item clicks here.
@@ -234,7 +233,9 @@ public class Bottom_navigation extends AppCompatActivity  {
         drawer.closeDrawer(GravityCompat.END);
         return true;
     }
-   */ @Override
+   */
+
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item != null && item.getItemId() == android.R.id.home) {
             if (drawer.isDrawerOpen(Gravity.RIGHT)) {
@@ -250,7 +251,6 @@ public class Bottom_navigation extends AppCompatActivity  {
     private void CALL_CART_COUNT_API() {
 
         String email = Login_preference.getemail(Bottom_navigation.this);
-
         String loginflag = Login_preference.getLogin_flag(Bottom_navigation.this);
         Log.e("customeriddd", "" + Login_preference.getcustomer_id(Bottom_navigation.this));
         if (loginflag.equalsIgnoreCase("1") || loginflag == "1") {
@@ -314,7 +314,7 @@ public class Bottom_navigation extends AppCompatActivity  {
                 PackageManager packageManager = getApplicationContext().getPackageManager();
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 try {
-                    String url = "https://api.whatsapp.com/send?phone=+96599644282&text=" + URLEncoder.encode("Please Chat", "UTF-8");
+                    String url = "https://api.whatsapp.com/send?phone=+96599644282&text=" + URLEncoder.encode("Let's Chat", "UTF-8");
                     i.setPackage("com.whatsapp");
                     i.setData(Uri.parse(url));
                     if (i.resolveActivity(packageManager) != null) {
@@ -354,18 +354,15 @@ public class Bottom_navigation extends AppCompatActivity  {
     }
     public static void Check_String_NULL_Value(TextView textview, String text) {
 
-
         if (text.equalsIgnoreCase("null") == true) {
             textview.setText("");
         } else {
-
             textview.setText(Html.fromHtml(Convert_String_First_Letter(text)));
         }
 
     }
     public static String Convert_String_First_Letter(String convert_string) {
         String upperString;
-
         if (convert_string.length() > 0) {
             upperString = convert_string.substring(0, 1).toUpperCase() + convert_string.substring(1);
         } else {

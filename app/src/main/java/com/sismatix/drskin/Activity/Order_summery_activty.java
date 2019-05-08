@@ -53,6 +53,7 @@ public class Order_summery_activty extends AppCompatActivity {
             order_id = bundle.getString("order");
             Log.e("order_id_summery",""+order_id);
         }
+
         tv_ordersummery_title.setTypeface(Home.opensans_bold);
         tv_successfuliy.setTypeface(Home.opensans_bold);
         tv_statustitle.setTypeface(Home.opensans_bold);
@@ -74,6 +75,7 @@ public class Order_summery_activty extends AppCompatActivity {
         tv_date.setTypeface(Home.opensans_regular);
         tv_pay_met.setTypeface(Home.opensans_regular);
         tv_add_os.setTypeface(Home.opensans_regular);
+
         if (CheckNetwork.isNetworkAvailable(Order_summery_activty.this)) {
 
             CALL_ORDER_SUMMARY_API(order_id);
@@ -90,6 +92,7 @@ public class Order_summery_activty extends AppCompatActivity {
                 finish();
             }
         });
+
     }
     private void CALL_ORDER_SUMMARY_API(final String order_id) {
         ApiInterface api = ApiClient.getClient().create(ApiInterface.class);

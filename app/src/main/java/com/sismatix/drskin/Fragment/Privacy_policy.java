@@ -21,7 +21,6 @@ public class Privacy_policy extends Fragment {
     public Privacy_policy() {
         // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,10 +34,9 @@ public class Privacy_policy extends Fragment {
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
         ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
-        tv_privacy.setText(Html.fromHtml(getString(R.string.about_text)));
+        tv_privacy.setText(Html.fromHtml(getString(R.string.Privacy)));
         return v;
     }
-
     private void Allocationmemory(View v) {
         toolbar_privacypolicy=(Toolbar)v.findViewById(R.id.toolbar_privacypolicy);
         tv_privacy=(TextView) v.findViewById(R.id.tv_privacy);

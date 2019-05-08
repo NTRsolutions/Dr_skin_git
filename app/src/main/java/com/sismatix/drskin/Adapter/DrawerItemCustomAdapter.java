@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sismatix.drskin.Activity.Bottom_navigation;
+import com.sismatix.drskin.Fragment.Bookappointment;
 import com.sismatix.drskin.Fragment.Cutomer_agereement;
 import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Fragment.MyAccount_withlogin;
@@ -102,17 +103,17 @@ public class DrawerItemCustomAdapter extends ArrayAdapter<DataModel> {
                         break;
                     case 4:
                         //fragment = new MyCart();
-                        fragment = new Cutomer_agereement();
+                        fragment = new Bookappointment();
                         //fragment = new TableFragment();
                         break;
                     case 5:
                         //fragment = new MyCart();
-                        fragment = new Cutomer_agereement();
+                        fragment = new Bookappointment();
                         //fragment = new TableFragment();
                         break;
                     case 6:
                         //fragment = new MyCart();
-                        fragment = new Cutomer_agereement();
+                        fragment = new Bookappointment();
                         //fragment = new TableFragment();
                         break;
 
