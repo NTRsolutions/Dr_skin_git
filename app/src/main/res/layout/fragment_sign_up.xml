@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@color/hedercolor"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
                 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:gravity="center"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorAccent"
+                    android:background="@color/hedercolor"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -49,7 +50,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/signup"
                             android:layout_marginRight="50dp"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="18dp"
                             android:textStyle="bold" />
 

@@ -74,7 +74,7 @@ public class Account_information extends Fragment implements View.OnClickListene
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_accountinfo);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
 
         tv_username.setText(Login_preference.getfullname(getActivity()));
         tv_fullname.setText(Login_preference.getfullname(getActivity()));

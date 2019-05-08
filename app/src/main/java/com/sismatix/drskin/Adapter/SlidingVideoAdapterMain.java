@@ -26,6 +26,7 @@ public class SlidingVideoAdapterMain extends RecyclerView.Adapter<SlidingVideoAd
     private Context context;
     private List<slidervideo_model> models;
     String video_id, spl, youtubeUrl;
+    public static String video_id_pass;
 
     public SlidingVideoAdapterMain(Context context, List<slidervideo_model> models) {
         this.context = context;
@@ -49,7 +50,7 @@ public class SlidingVideoAdapterMain extends RecyclerView.Adapter<SlidingVideoAd
 
 //Youtube(holder);
         String tst = getYoutubeID(youtubeUrl);
-
+        video_id_pass = getYoutubeID(slidervideo_model.getProd_video());
         Log.e("videooooiddd", "" + tst);
 
         Picasso.with(context)
@@ -60,7 +61,7 @@ public class SlidingVideoAdapterMain extends RecyclerView.Adapter<SlidingVideoAd
             @Override
             public void onClick(View v) {
                 final AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                String video_id_pass = getYoutubeID(slidervideo_model.getProd_video());
+
                 Log.e("video_id_pass",""+video_id_pass);
                 // Toast.makeText(context, video_id_pass, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, YPlayer.class);

@@ -126,10 +126,11 @@ public class MyCart extends Fragment {
                                 b.putString("coupon_code", coupon_code);
                                 b.putString("discount_amount", discount_amount);
                                 Log.e("grand_tot_cart", "" + grand_total);
-                                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                                loadFragment(new Checkout(),b);
+                                /*AppCompatActivity activity = (AppCompatActivity) view.getContext();
                                 Fragment myFragment = new Checkout();
                                 myFragment.setArguments(b);
-                                activity.getSupportFragmentManager().beginTransaction().replace(R.id.rootLayout, myFragment).addToBackStack(null).commit();
+                                activity.getSupportFragmentManager().beginTransaction().replace(R.id.rootLayout, myFragment).addToBackStack(null).commit();*/
                             }
                         } else {
                             String screen_type = "cart";

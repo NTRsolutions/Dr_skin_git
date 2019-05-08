@@ -26,6 +26,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 app:layout_collapseMode="pin"
+                android:background="@color/hedercolor"
                 app:popupTheme="@style/AppTheme.AppBarOverlay">
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -43,7 +43,6 @@ public class Splash extends AppCompatActivity implements View.OnClickListener {
                 finish();
             } else {
             }
-
         lv_signin_splash.setOnClickListener(this);
         lv_sikp_splash.setOnClickListener(this);
         /*new Handler().postDelayed(new Runnable() {

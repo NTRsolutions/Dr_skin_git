@@ -11,11 +11,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/hedercolor"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/hedercolor"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,7 +25,7 @@
                 android:id="@+id/toolbar_mywishlist"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorAccent"
+                android:background="@color/hedercolor"
                 app:titleMarginStart="100dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
@@ -48,7 +50,7 @@
                             android:layout_marginRight="30dp"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/white"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -60,6 +62,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
+                            android:tint="@color/white"
                             android:src="@drawable/ic_search_black_36dp"/>
                         <LinearLayout
                             android:id="@+id/l_cartshow"
@@ -74,6 +77,7 @@
                                 android:layout_alignBottom="@+id/img_eagleeye"
                                 android:layout_marginBottom="5dp"
                                 android:layout_marginLeft="10dp"
+                                android:tint="@color/white"
                                 android:layout_toRightOf="@+id/img_eagleeye"
                                 android:src="@drawable/ic_shopping_cart_black_36dp" />
                             <Button

@@ -121,7 +121,7 @@ public class Product_Details extends Fragment implements ViewPager.OnPageChangeL
         setHasOptionsMenu(true);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_product_detail);
         ((Bottom_navigation) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
 
         call_item_detail_api(proddd_id);
         lv_iteamdetails_click.setOnClickListener(this);

@@ -91,7 +91,7 @@ public class Wishlist extends Fragment implements View.OnClickListener {
         setHasOptionsMenu(true);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_mywishlist);
         ((Bottom_navigation) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
 
 
         wishlist_adapter = new Wishlist_Adapter(getContext(), wishlist_models);
@@ -120,11 +120,12 @@ public class Wishlist extends Fragment implements View.OnClickListener {
         wishlist.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.e("responseeeeee_wishlist", "" + response.body().toString());
+                Log.e("responseeeeee_wishlist", "" + response);
                 progressBar.setVisibility(View.GONE);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response.body().string());
+                    Log.e("response_object",""+jsonObject);
                     String status = jsonObject.getString("status");
                     Log.e("status_wishlist", "" + status);
                     if (status.equalsIgnoreCase("success")) {
@@ -164,8 +165,6 @@ public class Wishlist extends Fragment implements View.OnClickListener {
                 Toast.makeText(activity, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

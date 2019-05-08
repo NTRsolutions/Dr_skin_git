@@ -35,7 +35,7 @@ public class AddAddress extends Fragment {
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_addaddress);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
 
         return v;
     }

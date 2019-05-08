@@ -24,7 +24,7 @@
                 android:id="@+id/toolbar_shop"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/hedercolor"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
                     <LinearLayout
@@ -60,7 +60,7 @@
                                 android:id="@+id/iv_close"
                                 android:layout_width="55dp"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/app_logo"/>
+                                android:src="@drawable/logo_heder"/>
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -71,6 +71,7 @@
                                 android:id="@+id/iv_search"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:tint="@color/colorAccent"
                                 android:src="@drawable/ic_search_black_36dp"/>
                             <LinearLayout
                                 android:id="@+id/l_cartshow"
@@ -85,7 +86,7 @@
                                     android:layout_alignBottom="@+id/img_eagleeye"
                                     android:layout_marginBottom="5dp"
                                     android:layout_marginLeft="10dp"
-                                    android:tint="@color/black"
+                                    android:tint="@color/colorAccent"
                                     android:layout_toRightOf="@+id/img_eagleeye"
                                     android:src="@drawable/ic_shopping_cart_black_36dp" />
                                 <Button

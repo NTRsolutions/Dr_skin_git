@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="250dp"
                 android:layout_height="250dp"
-                android:src="@drawable/app_logo"/>
+                android:src="@drawable/sp_icon"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,12 +62,7 @@
                     android:textSize="16dp"
                     android:text="SKIP"/>
             </LinearLayout>
-
-
-
         </LinearLayout>
-
     </LinearLayout>
-
     <!--testttttt-->
 </LinearLayout>

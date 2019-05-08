@@ -1,31 +1,49 @@
 package com.sismatix.drskin.Activity;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sismatix.drskin.Adapter.DrawerItemCustomAdapter;
 import com.sismatix.drskin.Fragment.Chat;
 import com.sismatix.drskin.Fragment.Home;
 import com.sismatix.drskin.Fragment.MyAccount_withlogin;
 import com.sismatix.drskin.Fragment.MyCart;
+import com.sismatix.drskin.Fragment.MyOrders;
 import com.sismatix.drskin.Fragment.SignIn;
 import com.sismatix.drskin.Fragment.Wishlist;
+import com.sismatix.drskin.Model.DataModel;
+import com.sismatix.drskin.Preference.CustomTypefaceSpan;
 import com.sismatix.drskin.Preference.Login_preference;
 import com.sismatix.drskin.R;
 import com.sismatix.drskin.Retrofit.ApiClient;
@@ -33,22 +51,30 @@ import com.sismatix.drskin.Retrofit.ApiInterface;
 
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Bottom_navigation extends AppCompatActivity {
+public class Bottom_navigation extends AppCompatActivity  {
 
     private TextView mTextMessage;
     private ViewPager viewPager;
     BottomNavigationView bottomNavigationView;
     private View notificationBadge;
+    NavigationView navigationView;
+    public static DrawerLayout drawer;
+
     public static TextView tv_navidrawer, item_count, tv_logout, tv_bottomcount;
     Bundle b;
     boolean doubleBackToExitPressedOnce = false;
     String Screen,cartitem_count,loginflagmain;
     Call<ResponseBody> cartlistt = null;
+
+    private String[] mNavigationDrawerItemTitles;
+    private ListView mDrawerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +95,7 @@ public class Bottom_navigation extends AppCompatActivity {
         selectFragment(menu.getItem(0));
 
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
-        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(1);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(2);
         notificationBadge = LayoutInflater.from(this).inflate(R.layout.badge_row, menuView, false);
         tv_bottomcount = (TextView) notificationBadge.findViewById(R.id.badge);
         if (cartitem_count.equalsIgnoreCase("null") || cartitem_count.equals("")) {
@@ -78,6 +104,37 @@ public class Bottom_navigation extends AppCompatActivity {
             tv_bottomcount.setText(cartitem_count);
         }
         itemView.addView(notificationBadge);
+
+        mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        DataModel[] drawerItem = new DataModel[7];
+
+        drawerItem[0] = new DataModel( "HOME");
+        drawerItem[1] = new DataModel( "MY ACCOUNT");
+        drawerItem[2] = new DataModel( "MY ORDERS");
+        drawerItem[3] = new DataModel( "DR. GLOOSY CUSTOMER  AGREEMENT");
+        drawerItem[4] = new DataModel( "CONTACT US");
+        drawerItem[5] = new DataModel( "BOOK APPOINTMENT WITH DR");
+        drawerItem[6] = new DataModel( "SUGGESTIONS");
+
+        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.list_view_item_row, drawerItem);
+        mDrawerList.setAdapter(adapter);
+
+
+
+
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem mi = menu.getItem(i);
+            SubMenu subMenu = mi.getSubMenu();
+            if (subMenu != null && subMenu.size() > 0) {
+                for (int j = 0; j < subMenu.size(); j++) {
+                    MenuItem subMenuItem = subMenu.getItem(j);
+                    applyFontToMenuItem(subMenuItem);
+                }
+            }
+            //the method we have create in activity
+            applyFontToMenuItem(mi);
+        }
 
         b = getIntent().getExtras();
         if(b!=null)
@@ -91,6 +148,39 @@ public class Bottom_navigation extends AppCompatActivity {
         if (loginflagmain.equalsIgnoreCase("1") || loginflagmain == "1") {
             CALL_CART_COUNT_API();
         }
+
+        drawer=(DrawerLayout)findViewById(R.id.drawer);
+        navigationView=(NavigationView) findViewById(R.id.navigationView);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+
+       // navigationView.setNavigationItemSelectedListener(this);
+
+        ImageView iv_drawer_close = (ImageView) findViewById(R.id.iv_drawer_close);
+        iv_drawer_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawer.isDrawerOpen(GravityCompat.END)) {
+                    drawer.closeDrawer(GravityCompat.END);
+                } else {
+                }
+            }
+        });
+
+       /* View header = navigationView.getHeaderView(0);
+
+        ImageView iv_drawer_close = (ImageView) header.findViewById(R.id.iv_drawer_close);
+        iv_drawer_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawer.isDrawerOpen(GravityCompat.END)) {
+                    drawer.closeDrawer(GravityCompat.END);
+                } else {
+                }
+            }
+        });*/
     }
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -104,6 +194,58 @@ public class Bottom_navigation extends AppCompatActivity {
         }
 
     };
+
+
+
+    private void applyFontToMenuItem(MenuItem mi) {
+        Typeface font = Typeface.createFromAsset(getAssets(), "OpenSans-Bold.ttf");
+        SpannableString mNewTitle = new SpannableString(mi.getTitle());
+        mNewTitle.setSpan(new CustomTypefaceSpan("", font), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        mi.setTitle(mNewTitle);
+    }
+   /* @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+// Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+// Handle the camera action
+            pushFragment(new Home(), "home");
+
+        }else if (id == R.id.nav_myaccount) {
+            pushFragment(new MyAccount_withlogin(),"My Account");
+
+        } else if (id == R.id.nav_glossy) {
+
+        } else if (id == R.id.nav_book) {
+
+        } else if (id == R.id.nav_contact) {
+
+        }
+        else if (id == R.id.nav_suggestion) {
+
+        }else if (id == R.id.nav_orders) {
+            if (loginflagmain.equalsIgnoreCase("1") || loginflagmain == "1") {
+                pushFragment(new MyOrders(),"My orders");
+            } else {
+                pushFragment(new SignIn(),"Login");
+            }
+        }
+        drawer.closeDrawer(GravityCompat.END);
+        return true;
+    }
+   */ @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item != null && item.getItemId() == android.R.id.home) {
+            if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                drawer.closeDrawer(Gravity.RIGHT);
+            }
+            else {
+               // drawer.openDrawer(Gravity.RIGHT);
+            }
+        }
+        return false;
+    }
 
     private void CALL_CART_COUNT_API() {
 
@@ -169,7 +311,19 @@ public class Bottom_navigation extends AppCompatActivity {
                 //viewPager.setCurrentItem(1);
                 break;
             case R.id.navigation_chat:
-                pushFragment(new Chat(),"chat");
+                PackageManager packageManager = getApplicationContext().getPackageManager();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                try {
+                    String url = "https://api.whatsapp.com/send?phone=+96599644282&text=" + URLEncoder.encode("Please Chat", "UTF-8");
+                    i.setPackage("com.whatsapp");
+                    i.setData(Uri.parse(url));
+                    if (i.resolveActivity(packageManager) != null) {
+                        getApplicationContext().startActivity(i);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //pushFragment(new Chat(),"chat");
                 //viewPager.setCurrentItem(2);
                 break;
             case R.id.navigation_wishlist:
@@ -177,7 +331,10 @@ public class Bottom_navigation extends AppCompatActivity {
                 //viewPager.setCurrentItem(3);
                 break;
             case R.id.navigation_me:
-                pushFragment(new MyAccount_withlogin(),"myaccountwithlogin");
+                //pushFragment(new MyAccount_withlogin(),"myaccountwithlogin");
+                Log.e("drawer_208","aaa");
+                drawer.openDrawer(Gravity.RIGHT);
+                Log.e("drawer_209","bbb");
         }
     }
     private void pushFragment(Fragment fragment, String add_to_backstack) {
@@ -239,5 +396,10 @@ public class Bottom_navigation extends AppCompatActivity {
             super.onBackPressed();
             Log.e("onBackPressetitle", "" + title);
         }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

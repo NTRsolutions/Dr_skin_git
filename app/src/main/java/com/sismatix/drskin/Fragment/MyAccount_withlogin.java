@@ -42,7 +42,7 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         setHasOptionsMenu(true);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_myaccount);
         ((Bottom_navigation) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
         loginflagmain=Login_preference.getLogin_flag(getActivity());
         if (loginflagmain.equalsIgnoreCase("1") || loginflagmain == "1") {
            lv_withlogin.setVisibility(View.VISIBLE);
@@ -134,7 +134,8 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
         }else if(view == lv_mywwishlist){
             pushFragment(new Wishlist(),"wishlist");
         }else if(view == lv_accountinfo){
-            pushFragment(new Account_information(),"account_info");
+            loadFragment(new Account_information());
+            //pushFragment(new Account_information(),"account_info");
         }else if(view == lv_aboutus){
             pushFragment(new Aboutus(),"aboutus");
         }else if(view == lv_tac){
@@ -167,6 +168,14 @@ public class MyAccount_withlogin extends Fragment implements View.OnClickListene
             intent.putExtra(Intent.EXTRA_TEXT, "");
             getActivity().startActivity(Intent.createChooser(intent, ""));*/
         }
+    }
+
+    private void loadFragment(Fragment fragment) {
+        android.support.v4.app.FragmentManager manager = getChildFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.rootLayout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void pushFragment(Fragment fragment, String add_to_backstack) {

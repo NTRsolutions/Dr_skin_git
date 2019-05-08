@@ -34,7 +34,7 @@ public class Privacy_policy extends Fragment {
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_privacypolicy);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
         tv_privacy.setText(Html.fromHtml(getString(R.string.about_text)));
         return v;
     }

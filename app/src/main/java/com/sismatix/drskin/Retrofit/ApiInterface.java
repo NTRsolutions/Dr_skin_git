@@ -262,4 +262,7 @@ public interface ApiInterface {
     @GET("AppHomeVideo.php")
     Call<ResponseBody> getVideos();
 
+    @GET("AppVideostreamingdetails.php")
+    Call<ResponseBody> AppLivevideo();
+
 }

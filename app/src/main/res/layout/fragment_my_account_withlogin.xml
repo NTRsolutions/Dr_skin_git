@@ -24,6 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@color/hedercolor"
                 android:theme="@style/AppTheme.AppBarOverlay">
 
                 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -31,7 +32,7 @@
                     android:id="@+id/toolbar_myaccount"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/colorPrimary"
+                    android:background="@color/hedercolor"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -49,7 +50,7 @@
                             android:gravity="center"
                             android:layout_marginRight="30dp"
                             android:text="MY ACCOUNT"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="18dp" />
 
                     </LinearLayout>
@@ -283,6 +284,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -585,7 +587,7 @@
                 <LinearLayout
                     android:id="@+id/lv_insta"
                     android:layout_width="wrap_content"
-                    android:layout_height="80dp"
+                    android:layout_height="60dp"
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -600,6 +602,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:visibility="gone"
                     android:layout_marginTop="10dp"
                     android:background="#e1e1e1">
 
@@ -623,6 +626,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <LinearLayout

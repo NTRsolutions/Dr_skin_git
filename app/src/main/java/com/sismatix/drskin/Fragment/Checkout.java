@@ -29,8 +29,6 @@ public class Checkout extends Fragment implements View.OnClickListener {
     public Checkout() {
         // Required empty public constructor
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,7 +95,6 @@ public class Checkout extends Fragment implements View.OnClickListener {
         tv_checkout_title = (TextView) v.findViewById(R.id.tv_checkout_title);
         checkout_total = (TextView) v.findViewById(R.id.checkout_total);
     }
-
     private void loadFragment(Bundle b,View v) {
 
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
@@ -115,7 +112,7 @@ public class Checkout extends Fragment implements View.OnClickListener {
 
     private void loadFragmentmain(Fragment fragment) {
         Log.e("clickone", "");
-        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        android.support.v4.app.FragmentManager manager = getChildFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         transaction .setCustomAnimations(R.anim.fade_in,
                 0, 0, R.anim.fade_out);

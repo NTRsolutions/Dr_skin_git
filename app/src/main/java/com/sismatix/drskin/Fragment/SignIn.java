@@ -2,6 +2,7 @@ package com.sismatix.drskin.Fragment;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -57,14 +58,14 @@ public class SignIn extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_sign_in, container, false);
         AllocateMemory(v);
-       // setupUI(lv_mainsignin);
+        setupUI(lv_mainsignin);
         bundle = this.getArguments();
 
         setHasOptionsMenu(true);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_Signin);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
         btn_signin.setOnClickListener(this);
         //toolbar_Signin.setTitle(R.string.signin);
 
@@ -123,11 +124,14 @@ public class SignIn extends Fragment implements View.OnClickListener {
         }
     }
     public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager =
-                (InputMethodManager) activity.getSystemService(
-                        Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(
-                activity.getCurrentFocus().getWindowToken(), 0);
+
+        InputMethodManager inputManager = (InputMethodManager) activity
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+// check if no view has focus:
+        View currentFocusedView = activity.getCurrentFocus();
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(currentFocusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
     private void Loginapi(String login_email,String password) {
         lv_main.setVisibility(View.GONE);

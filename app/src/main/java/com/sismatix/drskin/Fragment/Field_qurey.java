@@ -65,8 +65,7 @@ public class Field_qurey extends Fragment {
         lv_ask_doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(getActivity(), Chat_messge.class);
-                startActivity(i);
+                loadFragment(new Live_withdr());
             }
         });
         lv_Checkout.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +96,14 @@ public class Field_qurey extends Fragment {
 
         return v;
     }
-
+    private void loadFragment(Fragment fragment) {
+        Log.e("clickone", "");
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.rootLayout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
     private void Submit_queriy(String name,String email,String que) {
         ApiInterface api = ApiClient.getClient().create(ApiInterface.class);
         final Call<ResponseBody> appContact = api.AppContact(name,email,que);

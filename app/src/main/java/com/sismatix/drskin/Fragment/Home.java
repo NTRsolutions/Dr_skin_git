@@ -89,9 +89,7 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
     RelativeLayout rl_image;
 
     public Home() {
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -142,8 +140,7 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
         lv_chat_doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(),Chat_messge.class);
-                startActivity(intent);
+                loadFragment(new Live_withdr());
             }
         });
         return v;

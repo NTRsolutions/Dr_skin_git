@@ -60,7 +60,7 @@ public class MyOrders extends Fragment {
         setHasOptionsMenu(true);
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_myorders);
         ((Bottom_navigation) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_keyboard_arrow_left_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
         // snapHelper.attachToRecyclerView(recycler_wishlist);
 
         if (CheckNetwork.isNetworkAvailable(getActivity())) {

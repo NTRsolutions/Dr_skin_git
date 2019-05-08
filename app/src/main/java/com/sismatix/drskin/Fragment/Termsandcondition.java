@@ -37,7 +37,7 @@ public class Termsandcondition extends Fragment {
         ((Bottom_navigation) getActivity()).setSupportActionBar(toolbar_termsconditions);
         ((Bottom_navigation) getActivity()).getSupportActionBar()
                 .setDisplayHomeAsUpEnabled(true);
-        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_36dp);
+        ((Bottom_navigation) getActivity()).getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_36dp);
         tv_termscondition.setText(Html.fromHtml(getString(R.string.about_text)));
         return v;
     }

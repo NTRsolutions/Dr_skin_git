@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/on"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_ho"
+            android:layout_gravity="center"
+            android:title="" />
+
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+
+
+    <group
+        android:id="@+id/one"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:layout_gravity="center|center_vertical"
+            android:title="@string/title_home"/>
+
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+
+    <group
+        android:id="@+id/two"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_myaccount"
+            android:layout_gravity="center"
+            android:title="@string/myaccount" />
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+    <group
+        android:id="@+id/three"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_orders"
+            android:layout_gravity="center"
+            android:title="@string/myorder" />
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+    <group
+        android:id="@+id/four"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_glossy"
+            android:layout_gravity="center"
+            android:title="@string/glossy" />
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+
+    <group
+        android:id="@+id/five"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_contact"
+            android:layout_gravity="center"
+            android:title="@string/contact" />
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+
+    <group
+        android:id="@+id/six"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_book"
+            android:layout_gravity="center"
+            android:title="@string/BOOK" />
+
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+    <group
+        android:id="@+id/seven"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_suggestion"
+            android:layout_gravity="center"
+            android:title="@string/suggestion" />
+
+    </group>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+    </FrameLayout>
+    <group
+        android:id="@+id/eight"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav"
+            android:layout_gravity="center"
+            android:title="" />
+
+    </group>
+
+</menu>

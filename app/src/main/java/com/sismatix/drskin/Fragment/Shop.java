@@ -290,8 +290,7 @@ public class Shop extends Fragment implements View.OnClickListener {
         }else if (view == l_cartshow){
             loadFragment(new MyCart());
         }else if (view == iv_chat){
-            Intent intent=new Intent(getActivity(), Chat_messge.class);
-            startActivity(intent);
+            loadFragment(new Live_withdr());
         }
     }
 
