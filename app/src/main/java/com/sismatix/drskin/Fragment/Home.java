@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.sismatix.drskin.Activity.Chat_activity;
 import com.sismatix.drskin.Activity.Chat_messge;
 import com.sismatix.drskin.Activity.CirclePagerIndicatorDecoration;
 import com.sismatix.drskin.Adapter.Cuntrylist_Adapter;
@@ -38,6 +39,7 @@ import com.sismatix.drskin.Model.Cuntrylist_model;
 import com.sismatix.drskin.Model.sliderimage_model;
 import com.sismatix.drskin.Model.slidervideo_model;
 import com.sismatix.drskin.Preference.CheckNetwork;
+import com.sismatix.drskin.Preference.Login_preference;
 import com.sismatix.drskin.R;
 import com.sismatix.drskin.Retrofit.ApiClient;
 import com.sismatix.drskin.Retrofit.ApiInterface;
@@ -133,7 +135,13 @@ public class Home extends Fragment implements ViewPager.OnPageChangeListener {
         lv_ask_doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new Field_qurey());
+
+                Intent i = new Intent(getContext(), Chat_activity.class);
+                Log.e("user_99", "" + Login_preference.getcustomer_id(getContext()));
+                i.putExtra("user_id", Login_preference.getcustomer_id(getContext()));
+                startActivity(i);
+
+                //loadFragment(new Field_qurey());
             }
         });
 

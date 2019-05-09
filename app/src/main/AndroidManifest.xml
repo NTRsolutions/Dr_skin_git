@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.Chat_activity"></activity>
         <activity android:name=".Activity.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,8 +45,9 @@
         <activity
             android:name=".Activity.YPlayer"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activity.YouTubePopup"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name=".Activity.YouTubePopup"
+            android:theme="@style/AppTheme.CustomTheme" />
     </application>
 
 </manifest>

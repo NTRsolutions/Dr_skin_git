@@ -29,6 +29,7 @@ public class Checkout extends Fragment implements View.OnClickListener {
     public Checkout() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,7 +66,6 @@ public class Checkout extends Fragment implements View.OnClickListener {
         tv_shipping.setTypeface(Home.opensans_bold);
         tv_confirmation.setTypeface(Home.opensans_bold);
         tv_payment.setTypeface(Home.opensans_bold);
-
 
         /*if (loginflag.equalsIgnoreCase("1") || loginflag == "1") {
             loadFragment(new Shipping_fragment());
@@ -105,19 +105,17 @@ public class Checkout extends Fragment implements View.OnClickListener {
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.frameLayout_checkout, fragment);
         transaction.addToBackStack(null);
-
         transaction.commit();*/
     }
 
     private void loadFragmentmain(Fragment fragment) {
         Log.e("clickone", "");
-        android.support.v4.app.FragmentManager manager = getChildFragmentManager();
+        android.support.v4.app.FragmentManager manager = getFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
         transaction .setCustomAnimations(R.anim.fade_in,
                 0, 0, R.anim.fade_out);
         transaction.replace(R.id.rootLayout, fragment);
         transaction.addToBackStack(null);
-
         transaction.commit();
     }
 

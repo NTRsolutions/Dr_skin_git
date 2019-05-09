@@ -15,11 +15,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sismatix.drskin.Activity.Chat_activity;
 import com.sismatix.drskin.Activity.YPlayer;
 import com.sismatix.drskin.Activity.YouTubePopup;
 import com.sismatix.drskin.Adapter.SlidingVideoAdapterMain;
 import com.sismatix.drskin.Model.slidervideo_model;
 import com.sismatix.drskin.Preference.CheckNetwork;
+import com.sismatix.drskin.Preference.Login_preference;
 import com.sismatix.drskin.R;
 import com.sismatix.drskin.Retrofit.ApiClient;
 import com.sismatix.drskin.Retrofit.ApiInterface;
@@ -43,6 +45,7 @@ import static com.sismatix.drskin.Adapter.SlidingVideoAdapterMain.video_id_pass;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class Live_withdr extends Fragment {
 
     TextView tv_titleupcoming, tv_time, tv_day, tv_th, tv_month_yres, tv_submittitle;
@@ -60,7 +63,9 @@ public class Live_withdr extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_live_withdr, container, false);
         tv_titleupcoming = (TextView) v.findViewById(R.id.tv_titleupcoming);
         tv_time = (TextView) v.findViewById(R.id.tv_time);
@@ -77,15 +82,21 @@ public class Live_withdr extends Fragment {
         recycler_shop_videos.setAdapter(slidingVideoAdapterMain);
         Log.e("sizee", "" + slidervideo_models.size());
         tv_titleupcoming.setTypeface(Home.opensans_bold);
+
         if (CheckNetwork.isNetworkAvailable(getActivity())) {
             livevideoapi();
         } else {
             Toast.makeText(getContext(), "Please Check your Internet Connection", Toast.LENGTH_SHORT).show();
         }
+
         lv_ask_doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new Field_qurey());
+                Intent i = new Intent(getContext(), Chat_activity.class);
+                Log.e("user_99", "" + Login_preference.getcustomer_id(getContext()));
+                i.putExtra("user_id", Login_preference.getcustomer_id(getContext()));
+                startActivity(i);
+                //loadFragment(new Field_qurey());
             }
         });
 
